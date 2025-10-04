@@ -1,0 +1,9 @@
+# 1. Entorno Virtual (VENV)
+# Esto ignora la carpeta del entorno virtual completo
+venv/
+# .venv/
+
+# 3. Archivos de Python Compilados
+__pycache__/
+*.pyc
+
