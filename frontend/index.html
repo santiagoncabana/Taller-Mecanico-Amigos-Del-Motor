@@ -1,9 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
-	</head>
-	<body></body>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - MecApp</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+    <!-- Header/Navbar -->
+    <header class="navbar">
+        <div class="nav-brand">
+            <div class="nav-logo">
+                <div class="nav-gear">⚙</div>
+                <div class="nav-wrench">🔧</div>
+            </div>
+            <span class="app-name">MecApp</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="#" class="nav-link active">Inicio</a>
+            <a href="#" class="nav-link">Clientes</a>
+            <a href="#" class="nav-link">Vehículos</a>
+            <a href="#" class="nav-link">Citas</a>
+            <a href="#" class="nav-link">Inventario</a>
+        </nav>
+        <div class="nav-user">
+            <span class="user-name">Usuario</span>
+            <div class="user-avatar">U</div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="dashboard">
+        <div class="container">
+            <!-- Bienvenida -->
+            <section class="welcome-section">
+                <h1>Bienvenido a MecApp</h1>
+                <p>Gestiona tu taller mecánico de manera eficiente</p>
+            </section>
+
+            <!-- Estadísticas Rápidas -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <h3>Citas Hoy</h3>
+                    <p class="stat-number">5</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Clientes Activos</h3>
+                    <p class="stat-number">24</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Vehículos en Taller</h3>
+                    <p class="stat-number">3</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Ingresos Mensuales</h3>
+                    <p class="stat-number">$2,450</p>
+                </div>
+            </section>
+
+            <!-- Citas Pendientes -->
+            <section class="pending-section">
+                <h2>Citas Pendientes</h2>
+                <div class="appointments-list">
+                    <!-- Las citas se cargan con JavaScript -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/dashboard.js"></script>
+</body>
+
 </html>
