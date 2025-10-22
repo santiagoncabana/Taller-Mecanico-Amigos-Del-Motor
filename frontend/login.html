@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MecApp</title>
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <!-- Formulario de Login -->
+        <form class="login-form" id="loginForm">
+            <!-- Logo -->
+            <div class="logo">
+                <div class="logo-icon">
+                    <div class="gear">⚙</div>
+                    <div class="wrench">🔧</div>
+                </div>
+                <h1>MecApp</h1>
+            </div>
+
+            <!-- Campo Email -->
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Correo electrónico" required>
+            </div>
+
+            <!-- Campo Contraseña -->
+            <div class="form-group">
+                <input type="password" id="password" placeholder="Contraseña" required>
+            </div>
+
+            <!-- Botón de Login -->
+            <button type="submit" class="login-btn">Iniciar Sesión</button>
+
+            <!-- Enlace "Olvidé contraseña" -->
+            <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+
+            <!-- Separador -->
+            <div class="separator">
+                <span>o</span>
+            </div>
+
+            <!-- Botones de Login Social -->
+            <button type="button" class="social-btn google-btn">
+                <span class="social-icon">G</span>
+                Continuar con Google
+            </button>
+
+            <button type="button" class="social-btn facebook-btn">
+                <span class="social-icon">f</span>
+                Continuar con Facebook
+            </button>
+
+            <!-- Enlace a Registro -->
+            <div class="register-link">
+                ¿No tienes una cuenta? <a href="register.html">Regístrate</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+
+</html>
