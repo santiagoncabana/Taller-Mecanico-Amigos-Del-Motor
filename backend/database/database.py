@@ -1,22 +1,34 @@
-# Importamos las librerias
+#librerias
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import sessionmaker, Session
+import importlib
 
+SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root@127.0.0.1/prueb_mecapp"
 
-SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root@127.0.0.1/mecapp"
-
-# Creamos el puente para la conexion con Python
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-base = declarative_base()
+Base = declarative_base()
 
-# Obtenemos la sesion de la 'Base de Datos'
+
 def get_db():
     db = SessionLocal()
     try:
         yield db
     finally:
         db.close() 
+
+
+from . import models 
+
+
+
+def create_db_tables():
+    # ...
+    try:
+        # Pasa checkfirst=True. Esto evita el error 1050 de MySQL.
+        models.Base.metadata.create_all(bind=engine, checkfirst=True) 
+        print("INFO: Tablas verificadas/creadas exitosamente.")
+    except Exception as e:
+        print(f"ERROR: Falló la creación de tablas. Detalles: {e}")

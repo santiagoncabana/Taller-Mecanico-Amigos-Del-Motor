@@ -3,15 +3,15 @@ from sqlalchemy import Column, Integer, String, Date, ForeignKey, Float
 from sqlalchemy.orm import relationship
 from .database import Base
 
-# Hacemos las Clases para asignarle los atributos: 
 class Cliente(Base):
     __tablename__ = "cliente"
 
     id = Column(Integer, primary_key=True, index=True) # Pk
     nombre = Column(String(100))
+    email = Column(String(100), unique=True)
+    contrasena = Column(String(100))
     dni = Column(String(20), unique=True)
     nro_telefono = Column(String(20))
-
     vehiculos = relationship("Vehiculo", back_populates="cliente")
     turnos = relationship("Turno", back_populates="cliente")
 
@@ -33,7 +33,7 @@ class Empleado(Base):
 
     id = Column(Integer, primary_key=True, index=True) # Pk
     nombre = Column(String(100))
-    rol = Column(String(50))  # puede ser 'mecanico' o 'encargado'
+    rol = Column(String(50))  
 
     turnos = relationship("Turno", back_populates="empleado")
 
