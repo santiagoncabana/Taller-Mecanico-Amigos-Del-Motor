@@ -9,7 +9,7 @@
 - [Rodrigo Raul](https://github.com/RodriAC123)
 - [Bautista]
 ### 🗄️ Bases de datos (Sql, etc.)
-- [Tiziano Grabiel](https://github.com/hinagi01)
+- [Tiziano Grabiel Leiva](https://github.com/hinagi01)
 - [Juan Cruz Rey]
 
 
