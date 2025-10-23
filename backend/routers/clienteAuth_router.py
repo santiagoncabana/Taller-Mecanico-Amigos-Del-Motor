@@ -17,6 +17,6 @@ def registerCliente(cliente: ClienteRegister, db: Session = Depends(get_db)):
 def loginCliente(cliente: ClienteLogin, db: Session = Depends(get_db)):
     user = autenticacion_cliente(db, cliente.email, cliente.contrasena)
     if user:
-        raise HTTPException(status_code=200, detail="Autenticación exitosa")
+        return {"message": "Autenticación exitosa", "nombre": user.nombre, "email": user.email}
     raise HTTPException(status_code=401, detail="Credenciales incorrectas")
 

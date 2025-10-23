@@ -4,7 +4,7 @@ from datetime import date, time
 
 class TurnoCreate(BaseModel):
     # Datos del Cliente
-    nombre_cliente: str
+    cliente_id: str
     telefono: str
     cuit: str
     
@@ -15,4 +15,5 @@ class TurnoCreate(BaseModel):
     # Datos del Turno
     fecha: date        
     hora_inicio: time  
+    empleado_id: int
     
