@@ -11,7 +11,7 @@
 - [Tiziano Grabiel Leiva](https://github.com/hinagi01)
 - [Juan Cruz Rey]
 
-##Screenshots
+## Screenshots
 
 <img src="https://images.pexels.com/photos/70912/pexels-photo-70912.jpeg" alt="Imagen de ejemplo de MecApp" width="600" height="350"/>
 
