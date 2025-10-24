@@ -12,4 +12,7 @@
 - [Juan Cruz Rey]
 
 ##Screenshots
-<img src="https://unsplash.com/es/fotos/bmw-m-3-blanco-y-negro-en-carretera-durante-el-dia-gmMja8G6gw4" alt="Imagen de ejemplo de MecApp" width="600" height="350"/>
+
+<img src="https://images.pexels.com/photos/70912/pexels-photo-70912.jpeg" alt="Imagen de ejemplo de MecApp" width="600" height="350"/>
+
+
