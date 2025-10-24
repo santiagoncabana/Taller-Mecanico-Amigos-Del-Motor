@@ -9,8 +9,6 @@ class Cliente(Base):
 
     id = Column(Integer, primary_key=True, index=True) # Pk
     nombre = Column(String(100))
-    dni = Column(String(20), unique=True)
-    nro_telefono = Column(String(20))
 
     vehiculos = relationship("Vehiculo", back_populates="cliente")
     turnos = relationship("Turno", back_populates="cliente")

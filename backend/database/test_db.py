@@ -1,8 +1,9 @@
-from backend.database.database import engine
+from MecApp.backend.database.database import engine, Base
+from MecApp.backend.database import models
 
 try:
     with engine.connect() as connection:
-        print("Conexion exitosa a la Base de Datos.")
+        print("Conexión exitosa a la base de datos.")
 except Exception as e:
-    print("Error al conectar a la Base de Datos.")
+    print("Error al conectar a la base de datos.")
     print(e)
