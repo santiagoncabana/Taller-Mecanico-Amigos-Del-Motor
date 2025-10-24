@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (loginForm) {
         loginForm.addEventListener('submit', function (event) {
             event.preventDefault();
-            console.log('Formulario de login enviado');
+            console.log('Formulario de login enviado.');
 
             // Obtener valores
             const email = document.getElementById('email').value;
@@ -17,12 +17,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Validaciones básicas
             if (!email || !password) {
-                alert('Por favor, completa todos los campos');
+                alert('Por favor, completa todos los campos.');
                 return;
             }
 
             if (!isValidEmail(email)) {
-                alert('Por favor, ingresa un email válido');
+                alert('Por favor, ingresa un email válido.');
                 return;
             }
 
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (registerForm) {
         registerForm.addEventListener('submit', function (event) {
             event.preventDefault();
-            console.log('Formulario de registro enviado');
+            console.log('Formulario de registro enviado.');
 
             // Obtener valores
             const fullName = document.getElementById('fullName').value;
@@ -50,27 +50,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Validaciones
             if (!fullName || !email || !password || !confirmPassword) {
-                alert('Por favor, completa todos los campos');
+                alert('Por favor, completa todos los campos.');
                 return;
             }
 
             if (!isValidEmail(email)) {
-                alert('Por favor, ingresa un email válido');
+                alert('Por favor, ingresa un email válido.');
                 return;
             }
 
             if (password.length < 6) {
-                alert('La contraseña debe tener al menos 6 caracteres');
+                alert('La contraseña debe tener al menos 6 caracteres.');
                 return;
             }
 
             if (password !== confirmPassword) {
-                alert('Las contraseñas no coinciden');
+                alert('Las contraseñas no coinciden.');
                 return;
             }
 
             if (!terms) {
-                alert('Debes aceptar los términos y condiciones');
+                alert('Debes aceptar los términos y condiciones.');
                 return;
             }
 

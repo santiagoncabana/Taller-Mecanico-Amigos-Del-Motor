@@ -41,7 +41,6 @@ function simulateStartService(appointmentId) {
     alert(`Iniciando servicio para cita #${appointmentId} - (Simulación frontend)`);
     // En el backend real, aquí se actualizaría el estado en la base de datos
 }
-
 function setupNavigation() {
     // Simular navegación entre páginas
     const navLinks = document.querySelectorAll('.nav-link');
@@ -49,7 +48,7 @@ function setupNavigation() {
         link.addEventListener('click', function (e) {
             e.preventDefault();
             const pageName = this.textContent;
-            alert(`Navegando a: ${pageName} - (Página en desarrollo)`);
+            alert(`Navegando a: ${pageName} - (Página en desarrollo.)`);
         });
     });
 }
