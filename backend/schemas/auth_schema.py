@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from backend.schemas.cliente_schemas import ClienteaBase
+from .cliente_schemas import ClienteaBase
 
 
 
@@ -9,8 +9,8 @@ class ClienteRegister(ClienteaBase):
     nombre:str
     email:str
     contrasena:str
-    dni:str
-    nro_telefono:str
+    dni:int
+    nro_telefono:int
 
 
 #login
