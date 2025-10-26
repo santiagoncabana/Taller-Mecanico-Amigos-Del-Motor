@@ -14,3 +14,7 @@ def crear_turno(turno_datos: TurnoCreate, db: Session = Depends(get_db)):
     if nuevo_turno is None:
         raise HTTPException(status_code=400, detail="Ya existe un turno para esa fecha y empleados.")
     return {"message": "Turno creado exitosamente", "turno_id": nuevo_turno.id}
+
+@router.get("/ObtenerTurnos", tags=["Turnos1"])
+def ListaTurnos():
+    return[{"nombre": "Pedro"}, {"nombre": "Maxi"}]

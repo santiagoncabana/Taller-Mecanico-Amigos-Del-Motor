@@ -1,5 +1,7 @@
 from pydantic import BaseModel
-from .cliente_schemas import ClienteaBase
+from backend.schemas.cliente_schemas import ClienteaBase
+
+
 
 
 #Registro
