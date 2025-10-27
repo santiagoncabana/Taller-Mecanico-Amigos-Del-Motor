@@ -9,8 +9,6 @@ class ClienteRegister(ClienteaBase):
     nombre:str
     email:str
     contrasena:str
-    dni:int
-    nro_telefono:int
 
 
 #login

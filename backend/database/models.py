@@ -41,8 +41,15 @@ class Turno(Base):
     __tablename__ = "turno"
 
     id = Column(Integer, primary_key=True, index=True) # Pk
-    fecha = Column(Date)
-    estado = Column(String(50))
+    fecha = Column(String)
+    
+    telefono = Column(String)
+    cuit = Column(String)
+    
+    patente = Column(String)
+    modelo = Column(String)
+    hora_inicio = Column(String)
+    #estado = Column(String(50))
     cliente_id = Column(Integer, ForeignKey("cliente.id"))
     empleado_id = Column(Integer, ForeignKey("empleado.id"))
 
