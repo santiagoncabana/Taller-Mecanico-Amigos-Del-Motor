@@ -12,6 +12,8 @@ router = APIRouter()
 def registerCliente(cliente: ClienteRegister, db: Session = Depends(get_db)):
     return create_cliente(db, cliente)
 
+
+
 #login cliente
 @router.post("/login", tags=["login cliente"])
 def loginCliente(cliente: ClienteLogin, db: Session = Depends(get_db)):

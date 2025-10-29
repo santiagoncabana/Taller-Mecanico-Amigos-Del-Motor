@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 import importlib
 
-SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root@127.0.0.1/mecapp"
+SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root@127.0.0.1:3306/prueb_mecapp"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
