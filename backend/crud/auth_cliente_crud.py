@@ -17,11 +17,11 @@ def create_cliente(db: Session, cliente: ClienteRegister):
 
 
 
-def autenticacion_cliente(db: Session, correo: str, contrasena: str):
+def autenticacion_cliente(db: Session, correo: str, contrasena_user: str):
     cliente = db.query(Cliente).filter(Cliente.email == correo).first()
     
     if not cliente:
         return None
-    if cliente.contrasena == contrasena:
+    if cliente.contrasena == contrasena_user:
         return cliente
     return None
