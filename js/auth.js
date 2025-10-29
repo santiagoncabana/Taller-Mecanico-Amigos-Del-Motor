@@ -1,106 +1,3 @@
-// // auth.js - Manejo del formulario de login y registro
-// document.addEventListener('DOMContentLoaded', function () {
-//     console.log('auth.js cargado correctamente');
-
-//     const loginForm = document.getElementById('loginForm');
-//     const registerForm = document.getElementById('registerForm');
-
-//     // Manejo del LOGIN
-//     if (loginForm) {
-//         loginForm.addEventListener('submit', function (event) {
-//             event.preventDefault();
-//             console.log('Formulario de login enviado');
-
-//             // Obtener valores
-//             const email = document.getElementById('email').value;
-//             const password = document.getElementById('password').value;
-
-//             // Validaciones básicas
-//             if (!email || !password) {
-//                 alert('Por favor, completa todos los campos');
-//                 return;
-//             }
-
-//             if (!isValidEmail(email)) {
-//                 alert('Por favor, ingresa un email válido');
-//                 return;
-//             }
-
-//             // Simulación de login exitoso
-//             console.log('Login exitoso, redirigiendo...');
-//             alert('¡Login exitoso! Redirigiendo al dashboard...');
-
-//             // REDIRECCIÓN DIRECTA - sin setTimeout
-//             window.location.href = 'index.html';
-//         });
-//     }
-
-//     // Manejo del REGISTRO
-//     if (registerForm) {
-//         registerForm.addEventListener('submit', function (event) {
-//             event.preventDefault();
-//             console.log('Formulario de registro enviado');
-
-//             // Obtener valores
-//             const fullName = document.getElementById('fullName').value;
-//             const email = document.getElementById('email').value;
-//             const password = document.getElementById('password').value;
-//             const confirmPassword = document.getElementById('confirmPassword').value;
-//             const terms = document.getElementById('terms').checked;
-
-//             // Validaciones
-//             if (!fullName || !email || !password || !confirmPassword) {
-//                 alert('Por favor, completa todos los campos');
-//                 return;
-//             }
-
-//             if (!isValidEmail(email)) {
-//                 alert('Por favor, ingresa un email válido');
-//                 return;
-//             }
-
-//             if (password.length < 6) {
-//                 alert('La contraseña debe tener al menos 6 caracteres');
-//                 return;
-//             }
-
-//             if (password !== confirmPassword) {
-//                 alert('Las contraseñas no coinciden');
-//                 return;
-//             }
-
-//             if (!terms) {
-//                 alert('Debes aceptar los términos y condiciones');
-//                 return;
-//             }
-
-//             // Simulación de registro exitoso
-//             console.log('Registro exitoso, redirigiendo...');
-//             alert('¡Registro exitoso! Redirigiendo al login...');
-
-//             // Redirección directa
-//             window.location.href = 'login.html';
-//         });
-//     }
-
-//     // Función para validar email
-//     function isValidEmail(email) {
-//         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-//         return emailRegex.test(email);
-//     }
-
-//     // Manejo de botones sociales
-//     const socialButtons = document.querySelectorAll('.social-btn');
-//     socialButtons.forEach(button => {
-//         button.addEventListener('click', function () {
-//             const socialType = this.classList.contains('google-btn') ? 'Google' : 'Facebook';
-//             alert(`Iniciar sesión con ${socialType} - Funcionalidad en desarrollo`);
-//         });
-//     });
-// });
-
-
-
 
 // 1. Lógica para el Formulario de REGISTRO
 const registerForm = document.getElementById('registerForm');
@@ -154,8 +51,6 @@ async function enviarDatos(data) {
 
 // 2. Lógica para el Formulario de LOGIN
 
-
-
 const backendURL = 'http://127.0.0.1:8000/login'; 
 
 const form = document.getElementById('loginForm');
@@ -163,44 +58,55 @@ const form = document.getElementById('loginForm');
 if (form) {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-
+        
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
+        const userType = document.getElementById('userType').value
+        
+        let endpointURL;
+        let redirectURL;
+
+        if (userType == 'cliente') {
+            endpointURL = 'http://127.0.0.1:8000/login';
+            redirectURL = '/MecApp/frontend/formulario.html';
+        } else if (userType == 'encargado') {
+            endpointURL = 'http://127.0.0.1:8000/encargado/login';
+            redirectURL = '/MecApp/frontend/dashboard-encargado.html';
+        }
 
         const loginData = {
             email: email,
             contrasena: password 
         };
 
-        await enviarLogin(loginData);
+        await enviarLogin(loginData, endpointURL, redirectURL);
     });
 } else {
     console.error("El formulario de login ('loginForm') no fue encontrado.");
 }
 
-
-async function enviarLogin(data) {
+async function enviarLogin(data, url, redirect) {
     try {
-        const response = await fetch(backendURL, {
+        const response = await fetch(url, {
+            // ... (código de fetch/POST)
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
+
         });
 
-        const result = await response.json();
-
         if (response.ok) {
-            alert('¡Bienvenido! Iniciaste sesión correctamente.');
-            window.location.href = '/MecApp/frontend/formulario.html';
+            const result = await response.json();
+            console.log('Login exitoso:', result);
+            window.location.href = redirect; // <-- REDIRECCIÓN
         } else {
-            console.error('Error al iniciar sesión:', result);
-            alert(`Error: ${result.detail || 'Credenciales incorrectas o problema del servidor.'}`);
+            // FALLO: Mostrar error de credenciales
+            const errorData = await response.json();
+            alert(`Error de Login: ${errorData.detail || 'Credenciales incorrectas.'}`);
         }
-
     } catch (error) {
-        console.error('Error de conexión:', error);
-        alert('No se pudo conectar con el servidor. Verifica que el backend esté activo.');
+        alert('Error de conexión con el servidor.');
     }
 }

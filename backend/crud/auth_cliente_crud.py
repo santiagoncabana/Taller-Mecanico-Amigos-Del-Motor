@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 
-from ..database.models import Cliente
+from ..database.models import Cliente,Empleado
 
-from ..schemas.auth_schema import ClienteRegister
+from ..schemas.auth_schema import ClienteRegister, EmpleadoRegister
 
 def create_cliente(db: Session, cliente: ClienteRegister):
     db_cliente = Cliente(
@@ -15,6 +15,18 @@ def create_cliente(db: Session, cliente: ClienteRegister):
     db.refresh(db_cliente)
     return db_cliente
 
+def create_empleado(db: Session, empleado: EmpleadoRegister):
+    db_empleado = Empleado(
+        nombre=empleado.nombre,
+        email=empleado.email,
+        contrasena=empleado.contrasena,
+        rol=empleado.rol
+    )
+    db.add(db_empleado)
+    db.commit()
+    db.refresh(db_empleado)
+    return db_empleado
+
 
 
 def autenticacion_cliente(db: Session, correo: str, contrasena_user: str):
@@ -24,4 +36,16 @@ def autenticacion_cliente(db: Session, correo: str, contrasena_user: str):
         return None
     if cliente.contrasena == contrasena_user:
         return cliente
+    return None
+
+
+
+
+def autenticacion_encargado(db: Session, correo: str, contrasena_user: str):
+    empleado = db.query(Empleado).filter(Empleado.email == correo).first()
+    
+    if not empleado:
+        return None
+    if empleado.contrasena == contrasena_user:
+        return empleado
     return None
