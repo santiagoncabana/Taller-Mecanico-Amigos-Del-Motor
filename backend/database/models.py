@@ -1,5 +1,5 @@
 # Importamos las Librerias
-from sqlalchemy import Column, Integer, String, Date, ForeignKey, Float
+from sqlalchemy import Column, Integer, String, Date,Time, ForeignKey, Float
 from sqlalchemy.orm import relationship
 from .database import Base
 
@@ -41,18 +41,11 @@ class Empleado(Base):
 class Turno(Base):
     __tablename__ = "turno"
 
-    id = Column(Integer, primary_key=True, index=True) # Pk
-    fecha = Column(String)
-    
-    telefono = Column(String)
-    cuit = Column(String)
-    
-    patente = Column(String)
-    modelo = Column(String)
-    hora_inicio = Column(String)
-    #estado = Column(String(50))
-    cliente_id = Column(Integer, ForeignKey("cliente.id"))
-    empleado_id = Column(Integer, ForeignKey("empleado.id"))
+    turno_id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    cliente_id = Column(Integer, ForeignKey("cliente.id"), nullable=False)
+    empleado_id = Column(Integer, ForeignKey("empleado.id"), nullable=False)
+    fecha = Column(String, nullable=False)
+    hora = Column(String, nullable=False) 
 
     cliente = relationship("Cliente", back_populates="turnos")
     empleado = relationship("Empleado", back_populates="turnos")

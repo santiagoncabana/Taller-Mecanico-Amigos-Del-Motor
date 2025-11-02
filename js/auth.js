@@ -41,7 +41,6 @@ async function enviarDatos(data) {
         window.location.href = '/MecApp/frontend/formulario.html';
 
     } catch (error) {
-        // MUESTRA ERRORES DE RED/CONEXIÓN/CORS
         console.error('Error de conexión o fetch:', error); 
         alert('Error de conexión con el servidor.');
     }
@@ -88,7 +87,6 @@ if (form) {
 async function enviarLogin(data, url, redirect) {
     try {
         const response = await fetch(url, {
-            // ... (código de fetch/POST)
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -102,7 +100,6 @@ async function enviarLogin(data, url, redirect) {
             console.log('Login exitoso:', result);
             window.location.href = redirect; // <-- REDIRECCIÓN
         } else {
-            // FALLO: Mostrar error de credenciales
             const errorData = await response.json();
             alert(`Error de Login: ${errorData.detail || 'Credenciales incorrectas.'}`);
         }
