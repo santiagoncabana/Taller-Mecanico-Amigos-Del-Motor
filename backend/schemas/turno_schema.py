@@ -14,7 +14,7 @@ class TurnoCreate(BaseModel):
     # Datos del Turno
     fecha: str  
     hora: str   
-    cliente_id: int
+    #cliente_id: int
 
 
 class TurnoResponse(BaseModel):
@@ -23,7 +23,7 @@ class TurnoResponse(BaseModel):
     empleado_id: int
     fecha: str
     hora: str
-    estado: str
+    #estado: str
 
     class Config:
         from_attributes = True

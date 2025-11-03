@@ -3,15 +3,33 @@ from sqlalchemy.orm import Session
 from ..database.database import get_db
 from ..crud.turno_cliente_crud import create_turno, get_turnos, get_turno_by_id, update_turno, delete_turno
 from ..schemas.turno_schema import TurnoCreate, TurnoResponse
+from database.models import Cliente, Turno
+from fastapi import Form
 
 router = APIRouter(prefix="/api/turnos", tags=["turnos"])
 
-@router.post("/", response_model=TurnoResponse)
+"""@router.post("/", response_model=TurnoResponse)
+def crear_nuevo_turno(turno: TurnoCreate, db: Session = Depends(get_db)):
+    if create_turno(db, turno):
+        return {"mensaje":f"Turno Creado Exitosamente, {create_turno(db, turno)}"}
+    else:
+        raise HTTPException(status_code=400, detail="No hay espacio disponible para el turno solicitado")"""
+        
+@router.post("/")
 def crear_nuevo_turno(turno: TurnoCreate, db: Session = Depends(get_db)):
     try:
-        return create_turno(db, turno)
+        nuevo_turno = create_turno(db, turno)
+        return {
+            "mensaje": "Turno creado exitosamente",
+            "turno_id": nuevo_turno.id,
+            "cliente_id": nuevo_turno.cliente_id,
+            "empleado_id": nuevo_turno.empleado_id,
+            "fecha": nuevo_turno.fecha,
+            "hora": nuevo_turno.hora
+        }
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
+        
 
 @router.get("/", response_model=list[TurnoResponse])
 def obtenerTodosLosTurnos(db: Session = Depends(get_db)):

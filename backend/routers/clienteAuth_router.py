@@ -1,21 +1,44 @@
 from fastapi import APIRouter, Depends, HTTPException
 from ..database.database import get_db, Session
 from ..crud.auth_cliente_crud import create_cliente,autenticacion_cliente  ,autenticacion_encargado ,create_empleado
-from ..schemas.auth_schema import ClienteRegister
-from ..schemas.auth_schema import ClienteLogin
-from ..schemas.auth_schema import EncargadoLogin
-from ..schemas.auth_schema import EmpleadoRegister
+from ..schemas.auth_schema import ClienteRegister, ClienteLogin
+from ..database.models import Cliente
+from ..schemas.auth_schema import EncargadoLogin, EmpleadoRegister
+from fastapi import Form
+from MecApp.backend.security.security import pwd_context
 
+
+SECRET_KEY = "cabana"
+ALGORITHM = "HS256"
 
 router = APIRouter()
 
-# Registro de cliente
+"""# Registro de cliente
 @router.post("/register",tags=["register cliente"])
 def registerCliente(cliente: ClienteRegister, db: Session = Depends(get_db)):
-    return create_cliente(db, cliente)
+    return create_cliente(db, cliente)"""
+
+@router.post("/register")
+def register(
+    cuit: str = Form(...),
+    nombre: str = Form(...),
+    email: str = Form(...),
+    contrasena: str = Form(...),
+    db: Session = Depends(get_db)
+):
+    # Verifica si CUIT ya existe
+    if db.query(Cliente).filter(Cliente.cuit == cuit).first():
+        raise HTTPException(400, "CUIT ya registrado")
+
+    hashed = pwd_context.hash(contrasena)
+    cliente = Cliente(cuit=cuit, nombre=nombre, email=email, contrasena=hashed)
+    db.add(cliente)
+    db.commit()
+    db.refresh(cliente)
+    return {"mensaje": "Cliente creado", "id": cliente.id}
     
 
-
+#Registro Encargado
 @router.post("/register/encargado", tags=["register encargado"])
 def registerEncargado(empleado: EmpleadoRegister, db: Session = Depends(get_db)):
     return create_empleado(db, empleado)

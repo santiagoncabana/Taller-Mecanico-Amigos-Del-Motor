@@ -14,9 +14,15 @@ create_db_tables()
 app = FastAPI()
 
 
+#origins = [
+   #"http://127.0.0.1:5500", 
+    #"http://localhost:5500",
+#]
 origins = [
-   "http://127.0.0.1:5500", 
+    "http://127.0.0.1:5500",
     "http://localhost:5500",
+    "http://127.0.0.1:8000",  # ← AGREGAR
+    "http://localhost:8000",   # ← AGREGAR
 ]
 app.add_middleware(
     CORSMiddleware,

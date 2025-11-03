@@ -5,6 +5,7 @@ class ClienteRegister(BaseModel):
     nombre:str
     email:str
     contrasena:str
+    cuit:int
 
 
 #login
@@ -23,6 +24,7 @@ class EmpleadoRegister(BaseModel):
     email: str
     contrasena: str
     rol: str  # Puedes establecer el rol fijo aquí, por ejemplo: "encargado"
+    disponible: bool
 
 # class UserAuthResponse(BaseModel):
 #     nombre: str

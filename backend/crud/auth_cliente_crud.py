@@ -1,14 +1,14 @@
 from sqlalchemy.orm import Session
-
 from ..database.models import Cliente,Empleado
-
 from ..schemas.auth_schema import ClienteRegister, EmpleadoRegister
+from MecApp.backend.security.security import pwd_context
 
 def create_cliente(db: Session, cliente: ClienteRegister):
     db_cliente = Cliente(
         nombre=cliente.nombre,
         email=cliente.email,
-        contrasena=cliente.contrasena
+        contrasena=cliente.contrasena,
+        cuit=cliente.cuit
     )
     db.add(db_cliente)
     db.commit()
@@ -20,7 +20,8 @@ def create_empleado(db: Session, empleado: EmpleadoRegister):
         nombre=empleado.nombre,
         email=empleado.email,
         contrasena=empleado.contrasena,
-        rol=empleado.rol
+        rol=empleado.rol,
+        disponible=empleado.disponible
     )
     db.add(db_empleado)
     db.commit()

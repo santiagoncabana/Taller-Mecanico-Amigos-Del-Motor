@@ -1,5 +1,5 @@
 # Importamos las Librerias
-from sqlalchemy import Column, Integer, String, Date,Time, ForeignKey, Float
+from sqlalchemy import Column, Integer, String, Date,Time, ForeignKey, Float, Boolean
 from sqlalchemy.orm import relationship
 from .database import Base
 
@@ -12,6 +12,7 @@ class Cliente(Base):
     contrasena = Column(String(100))
     vehiculos = relationship("Vehiculo", back_populates="cliente")
     turnos = relationship("Turno", back_populates="cliente")
+    cuit = Column(Integer, unique=True)
 
 
 class Vehiculo(Base):
@@ -33,7 +34,8 @@ class Empleado(Base):
     nombre = Column(String(100))
     email = Column(String(100), unique=True)
     contrasena = Column(String(100))
-    rol = Column(String(50))    
+    rol = Column(String(50))  
+    disponible= Column(Boolean, default="true")  
 
     turnos = relationship("Turno", back_populates="empleado")
 
@@ -41,11 +43,15 @@ class Empleado(Base):
 class Turno(Base):
     __tablename__ = "turno"
 
-    turno_id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     cliente_id = Column(Integer, ForeignKey("cliente.id"), nullable=False)
     empleado_id = Column(Integer, ForeignKey("empleado.id"), nullable=False)
     fecha = Column(String, nullable=False)
-    hora = Column(String, nullable=False) 
+    hora = Column(String, nullable=False)
+    telefono = Column(String(20)) 
+    cuit = Column(String(20))
+    patente = Column(String(20))
+    modelo= Column(String(50))
 
     cliente = relationship("Cliente", back_populates="turnos")
     empleado = relationship("Empleado", back_populates="turnos")
