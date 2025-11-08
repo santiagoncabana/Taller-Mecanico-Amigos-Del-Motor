@@ -20,18 +20,17 @@ def registerCliente(cliente: ClienteRegister, db: Session = Depends(get_db)):
 
 @router.post("/register")
 def register(
-    cuit: str = Form(...),
+    DNI: int = Form(...),
     nombre: str = Form(...),
     email: str = Form(...),
     contrasena: str = Form(...),
     db: Session = Depends(get_db)
 ):
-    # Verifica si CUIT ya existe
-    if db.query(Cliente).filter(Cliente.cuit == cuit).first():
-        raise HTTPException(400, "CUIT ya registrado")
+    if db.query(Cliente).filter(Cliente.DNI == DNI).first():
+        raise HTTPException(400, "DNI ya registrado")
 
-    hashed = pwd_context.hash(contrasena)
-    cliente = Cliente(cuit=cuit, nombre=nombre, email=email, contrasena=hashed)
+    #hashed = pwd_context.hash(contrasena)
+    cliente = Cliente(DNI=DNI, nombre=nombre, email=email, contrasena=contrasena)
     db.add(cliente)
     db.commit()
     db.refresh(cliente)

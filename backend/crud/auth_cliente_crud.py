@@ -8,7 +8,7 @@ def create_cliente(db: Session, cliente: ClienteRegister):
         nombre=cliente.nombre,
         email=cliente.email,
         contrasena=cliente.contrasena,
-        cuit=cliente.cuit
+        DNI=cliente.DNI
     )
     db.add(db_cliente)
     db.commit()

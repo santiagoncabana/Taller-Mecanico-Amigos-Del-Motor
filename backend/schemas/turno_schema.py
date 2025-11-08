@@ -5,7 +5,7 @@ from datetime import date, time
 class TurnoCreate(BaseModel):
     # Datos del Cliente
     telefono: str
-    cuit: str
+    DNI: int
     
     # Datos del Vehículo
     patente: str
@@ -18,7 +18,7 @@ class TurnoCreate(BaseModel):
 
 
 class TurnoResponse(BaseModel):
-    turno_id: int
+    id: int
     cliente_id: int
     empleado_id: int
     fecha: str

@@ -5,7 +5,7 @@ class ClienteRegister(BaseModel):
     nombre:str
     email:str
     contrasena:str
-    cuit:int
+    DNI:int
 
 
 #login

@@ -6,13 +6,13 @@ from .database import Base
 class Cliente(Base):
     __tablename__ = "cliente"
 
-    id = Column(Integer, primary_key=True, index=True) # Pk
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True) # Pk
     nombre = Column(String(100))
     email = Column(String(100), unique=True)
     contrasena = Column(String(100))
     vehiculos = relationship("Vehiculo", back_populates="cliente")
     turnos = relationship("Turno", back_populates="cliente")
-    cuit = Column(Integer, unique=True)
+    DNI = Column(Integer, unique=True)
 
 
 class Vehiculo(Base):
@@ -30,7 +30,7 @@ class Vehiculo(Base):
 class Empleado(Base):
     __tablename__ = "empleado"
 
-    id = Column(Integer, primary_key=True, index=True) # Pk
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True) # Pk
     nombre = Column(String(100))
     email = Column(String(100), unique=True)
     contrasena = Column(String(100))
@@ -49,7 +49,7 @@ class Turno(Base):
     fecha = Column(String, nullable=False)
     hora = Column(String, nullable=False)
     telefono = Column(String(20)) 
-    cuit = Column(String(20))
+    DNI = Column(String(20))
     patente = Column(String(20))
     modelo= Column(String(50))
 
