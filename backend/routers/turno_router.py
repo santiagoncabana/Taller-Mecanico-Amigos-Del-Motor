@@ -1,19 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from ..database.database import get_db
-from ..crud.turno_cliente_crud import create_turno, get_turnos, get_turno_by_id, update_turno, delete_turno
-from ..schemas.turno_schema import TurnoCreate, TurnoResponse
+from ..crud.turno_cliente_crud import create_turno, get_turnos, get_turno_by_id, update_turno, delete_turno, update_turno_estado
+from ..schemas.turno_schema import TurnoCreate, TurnoResponse, TurnoUpdate
 from database.models import Cliente, Turno
 from fastapi import Form
 
 router = APIRouter(prefix="/api/turnos", tags=["turnos"])
 
-"""@router.post("/", response_model=TurnoResponse)
-def crear_nuevo_turno(turno: TurnoCreate, db: Session = Depends(get_db)):
-    if create_turno(db, turno):
-        return {"mensaje":f"Turno Creado Exitosamente, {create_turno(db, turno)}"}
-    else:
-        raise HTTPException(status_code=400, detail="No hay espacio disponible para el turno solicitado")"""
         
 @router.post("/")
 def crear_nuevo_turno(turno: TurnoCreate, db: Session = Depends(get_db)):
@@ -25,7 +19,8 @@ def crear_nuevo_turno(turno: TurnoCreate, db: Session = Depends(get_db)):
             "cliente_id": nuevo_turno.cliente_id,
             "empleado_id": nuevo_turno.empleado_id,
             "fecha": nuevo_turno.fecha,
-            "hora": nuevo_turno.hora
+            "hora": nuevo_turno.hora,
+            "Estado:": "Pendiente"
         }
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -55,3 +50,10 @@ def eliminar_turno_existente(turno_id: int, db: Session = Depends(get_db)):
     if not deleted:
         raise HTTPException(status_code=404, detail="Turno no encontrado")
     return {"message": "Turno eliminado"}
+
+"""@router.patch("/{turno_id}/estado", response_model=TurnoResponse)
+def actualizar_estado_turno(turno_id: int, status_update: TurnoUpdate, db: Session = Depends(get_db)):
+    updated_turno = update_turno_estado(db, turno_id, status_update.estado)
+    if not updated_turno:
+        raise HTTPException(status_code=404, detail="Turno no encontrado")
+    return updated_turno"""

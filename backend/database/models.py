@@ -50,25 +50,28 @@ class Turno(Base):
     hora = Column(String, nullable=False)
     telefono = Column(String(20)) 
     DNI = Column(String(20))
-    patente = Column(String(20))
-    modelo= Column(String(50))
+    estado = Column(String(50), default="pendiente")
 
-    cliente = relationship("Cliente", back_populates="turnos")
-    empleado = relationship("Empleado", back_populates="turnos")
-    orden_servicio = relationship("OrdenDeServicio", back_populates="turno", uselist=False)
+    cliente = relationship("Cliente", back_populates="turnos", lazy="select")
+    empleado = relationship("Empleado", back_populates="turnos", lazy="select")
+    orden_servicio = relationship("OrdenDeServicio", back_populates="turno", uselist=False, lazy="noload")
 
 
 class OrdenDeServicio(Base):
     __tablename__ = "orden_de_servicio"
 
-    id = Column(Integer, primary_key=True, index=True) # Pk
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True) # Pk
     descripcion_trabajo = Column(String(255))
     precio_total = Column(Float)
-    estado = Column(String(50))
     turno_id = Column(Integer, ForeignKey("turno.id"))
+    patente = Column(String(20))
+    modelo = Column(String(50))
+    nombre_cliente = Column(String(100))
+    telefono_cliente = Column(String(20))
+    dni_cliente = Column(String(20))
 
-    turno = relationship("Turno", back_populates="orden_servicio")
-    trabajos = relationship("Trabajo", back_populates="orden_servicio")
+    turno = relationship("Turno", back_populates="orden_servicio", lazy="noload")
+    trabajos = relationship("Trabajo", back_populates="orden_servicio", lazy="select")
 
 
 class Trabajo(Base):

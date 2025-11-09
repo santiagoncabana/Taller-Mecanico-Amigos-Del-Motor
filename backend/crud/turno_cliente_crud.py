@@ -52,15 +52,24 @@ def create_turno(db: Session, turno: TurnoCreate):
         empleado_id=emp.id,          # ← RELACIONADO CON EMPLEADO
         telefono=turno.telefono,
         DNI=turno.DNI,
-        patente=turno.patente,
-        modelo=turno.modelo,
         fecha=turno.fecha,
         hora=turno.hora,
+        estado="pendiente"
     )
     db.add(new_turno)
     db.commit()
     db.refresh(new_turno)
     return new_turno
+
+def update_turno_estado(db: Session, turno_id: int, nuevo_estado: str):
+    turno = db.query(Turno).filter(Turno.id == turno_id).first()
+    
+    if turno:
+        turno.estado = nuevo_estado
+        db.commit()
+        db.refresh(turno)
+        return turno
+    return None
 
 
 # Otras CRUD funciones
