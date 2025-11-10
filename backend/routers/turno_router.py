@@ -50,10 +50,3 @@ def eliminar_turno_existente(turno_id: int, db: Session = Depends(get_db)):
     if not deleted:
         raise HTTPException(status_code=404, detail="Turno no encontrado")
     return {"message": "Turno eliminado"}
-
-"""@router.patch("/{turno_id}/estado", response_model=TurnoResponse)
-def actualizar_estado_turno(turno_id: int, status_update: TurnoUpdate, db: Session = Depends(get_db)):
-    updated_turno = update_turno_estado(db, turno_id, status_update.estado)
-    if not updated_turno:
-        raise HTTPException(status_code=404, detail="Turno no encontrado")
-    return updated_turno"""

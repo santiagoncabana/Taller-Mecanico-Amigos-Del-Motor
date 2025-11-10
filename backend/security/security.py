@@ -2,8 +2,7 @@ from datetime import datetime, timedelta
 from jose import jwt
 from passlib.context import CryptContext
 
-# Configuración básica
-SECRET_KEY = "supersecreto123"  # Cambiá esto por una variable de entorno real
+SECRET_KEY = "supersecreto123"  
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
