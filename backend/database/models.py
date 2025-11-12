@@ -13,15 +13,17 @@ class Cliente(Base):
     vehiculos = relationship("Vehiculo", back_populates="cliente")
     turnos = relationship("Turno", back_populates="cliente")
     DNI = Column(Integer, unique=True)
+    telefono = Column(String(20))
 
 
 class Vehiculo(Base):
     __tablename__ = "vehiculo"
 
-    id = Column(Integer, primary_key=True, index=True) # Pk
+    id = Column(Integer, primary_key=True) # Pk
     marca = Column(String(50))
     modelo = Column(String(50))
-    año = Column(Integer)
+    anio = Column(Integer)
+    patente = Column(String(20), unique=True)
     cliente_id = Column(Integer, ForeignKey("cliente.id"))
 
     cliente = relationship("Cliente", back_populates="vehiculos")
@@ -66,9 +68,14 @@ class OrdenDeServicio(Base):
     turno_id = Column(Integer, ForeignKey("turno.id"))
     patente = Column(String(20))
     modelo = Column(String(50))
+    marca = Column(String(50))
     nombre_cliente = Column(String(100))
     telefono_cliente = Column(String(20))
     dni_cliente = Column(String(20))
+    fecha_cliente = Column(String)
+    empleado_id = Column(Integer, ForeignKey("empleado.id"))
+    anio = Column(Integer)
+    vehiculo_id = Column(Integer, ForeignKey("vehiculo.id"))
 
     turno = relationship("Turno", back_populates="orden_servicio", lazy="noload")
     trabajos = relationship("Trabajo", back_populates="orden_servicio", lazy="select")

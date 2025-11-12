@@ -1,7 +1,7 @@
 from database.models import OrdenDeServicio
 from sqlalchemy.orm import Session
 from schemas.turno_schema import orden_de_servicio_create
-from database.models import Cliente, Turno
+from database.models import Cliente, Turno, Vehiculo
 
 
     
@@ -16,6 +16,24 @@ def create_orden(db: Session, orden: OrdenDeServicio):
     if not cliente:
         raise ValueError("Cliente no encontrado")
     
+    vehiculo = db.query(Vehiculo).filter(Vehiculo.patente == orden.patente).first()
+    
+    if not vehiculo:
+        #Si NO existe, lo creamos
+        vehiculo = Vehiculo(
+            patente=orden.patente,
+            modelo=orden.modelo,
+            marca=orden.marca,
+            anio=orden.anio,
+            cliente_id=cliente.id  #Asignamos el ID del cliente dueño
+        )
+        db.add(vehiculo)
+        db.flush()  #Para obtener el ID del vehículo
+    else:
+        vehiculo.modelo = orden.modelo
+        vehiculo.marca = orden.marca
+        vehiculo.anio = orden.anio
+    
     #Crear la orden con los datos autocompletados
     nueva_orden = OrdenDeServicio(
         turno_id=orden.turno_id,
@@ -23,11 +41,16 @@ def create_orden(db: Session, orden: OrdenDeServicio):
         precio_total=orden.precio_total,
         patente=orden.patente,
         modelo=orden.modelo,
+        anio=orden.anio,
+        marca=orden.marca,
         
         #AUTOCOMPLETAR DESDE CLIENTE Y TURNO
         nombre_cliente=cliente.nombre,
         telefono_cliente=turno.telefono,  
-        dni_cliente=turno.DNI             
+        dni_cliente=turno.DNI,
+        fecha_cliente=turno.fecha,
+        empleado_id=turno.empleado_id,
+        vehiculo_id=vehiculo.id
     )
     
     db.add(nueva_orden)
@@ -45,10 +68,6 @@ def actualizar_turno_estado(db: Session, turno_id: int, nuevo_estado: str):
     estados_validos = ["Pendiente", "Finalizado"]
     if nuevo_estado not in estados_validos:
         raise ValueError(f"Estado inválido. Use: {estados_validos}")
-    
-    #No permitir cambiar si ya está completado
-    if turno.estado == "Finalizado":
-        raise ValueError("No se puede modificar un turno Finalizado")
     
     #Actualizar
     turno.estado = nuevo_estado

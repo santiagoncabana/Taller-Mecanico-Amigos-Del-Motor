@@ -36,20 +36,23 @@ def conseguir_empleado_disponible(db: Session, fecha: str, hora: str) -> Emplead
     return empleado
 
 def create_turno(db: Session, turno: TurnoCreate):
-    # 1. Buscar cliente por DNI
+    #Buscar cliente por DNI
     cliente = db.query(Cliente).filter(Cliente.DNI == turno.DNI).first()
     if not cliente:
         raise ValueError("Cliente no encontrado con ese DNI")
     
-    # 2. Buscar empleado disponible
+    if turno.telefono:
+        cliente.telefono = turno.telefono #Actualiza la tabla de cliente cuando se crea el turno, ya que en solo ahi pedimos numero y en la tabla de clientes queda null siempre.
+    
+    #Buscar empleado disponible
     emp = conseguir_empleado_disponible(db, turno.fecha, turno.hora)
     if not emp:
         raise ValueError("No hay empleados disponibles")
     
-    # 3. Crear turno con cliente_id y empleado_id
+    #Crear turno con cliente_id y empleado_id
     new_turno = Turno(
-        cliente_id=cliente.id,      # ← RELACIONADO CON CLIENTE
-        empleado_id=emp.id,          # ← RELACIONADO CON EMPLEADO
+        cliente_id=cliente.id,      #RELACIONADO CON CLIENTE
+        empleado_id=emp.id,          #RELACIONADO CON EMPLEADO
         telefono=turno.telefono,
         DNI=turno.DNI,
         fecha=turno.fecha,
@@ -72,7 +75,7 @@ def update_turno_estado(db: Session, turno_id: int, nuevo_estado: str):
     return None
 
 
-# Otras CRUD funciones
+#Otras CRUD funciones
 def get_turnos(db: Session):
     return db.query(Turno).all()
 

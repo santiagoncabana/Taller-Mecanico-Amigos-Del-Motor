@@ -2,8 +2,9 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from ..database.database import get_db
 from ..crud.Orden_de_servicio_crud import create_orden, actualizar_turno_estado
-from ..schemas.turno_schema import orden_de_servicio_create
+from ..schemas.turno_schema import orden_de_servicio_create, OrdenResponse
 from database.models import Cliente, Turno
+
 
 router = APIRouter(prefix="/api/orden_de_servicio", tags=["orden_de_servicio"])
 
@@ -19,6 +20,11 @@ def crear_orden_de_servicio(orden: orden_de_servicio_create, db: Session = Depen
             "turno_id": nueva_orden.turno_id,
             "patente": nueva_orden.patente,
             "modelo": nueva_orden.modelo,
+            "marca": nueva_orden.marca,
+            "anio": nueva_orden.anio,
+            "fecha_turno": nueva_orden.fecha_cliente,
+            "empleado_id": nueva_orden.empleado_id,
+            "vehiculo_id": nueva_orden.vehiculo_id
         }
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))

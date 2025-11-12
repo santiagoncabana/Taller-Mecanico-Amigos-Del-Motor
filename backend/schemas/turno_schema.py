@@ -8,10 +8,6 @@ class TurnoCreate(BaseModel):
     telefono: str
     DNI: int
     
-    # Datos del Vehículo
-    #patente: str
-    #modelo: str
-    
     # Datos del Turno
     fecha: str  
     hora: str   
@@ -38,6 +34,8 @@ class orden_de_servicio_create(BaseModel):
     turno_id: int
     patente: str
     modelo: str
+    marca: str
+    anio : int
     
 class OrdenCreate(BaseModel):
     turno_id: int
@@ -45,6 +43,8 @@ class OrdenCreate(BaseModel):
     precio_total: int
     patente: str
     modelo: str
+    marca: str
+    anio: int
 
 class OrdenResponse(BaseModel):
     id: int
@@ -53,9 +53,14 @@ class OrdenResponse(BaseModel):
     precio_total: int
     patente: str
     modelo: str
+    marca: str
+    anio: int
     nombre_cliente: str
     telefono_cliente: str
     dni_cliente: str
+    fecha_turno: str
+    empleado_id: int
+    vehiculo_id: int
     
     class Config:
         from_attributes = True
