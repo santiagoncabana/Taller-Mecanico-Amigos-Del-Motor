@@ -1,6 +1,5 @@
 from database.models import OrdenDeServicio
 from sqlalchemy.orm import Session
-from schemas.turno_schema import orden_de_servicio_create
 from database.models import Cliente, Turno, Vehiculo
 
 

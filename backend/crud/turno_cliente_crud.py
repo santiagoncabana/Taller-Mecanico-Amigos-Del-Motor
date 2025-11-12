@@ -22,7 +22,7 @@ def conseguir_empleado_disponible(db: Session, fecha: str, hora: str) -> Emplead
         .subquery()
     )
 
-    # Consulta directa: empleados disponibles y no ocupados, orden aleatorio
+    #Consulta directa: empleados disponibles y no ocupados, orden aleatorio
     empleado = (
         db.query(Empleado)
         .filter(
