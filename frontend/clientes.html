@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Clientes</title>
+    <link rel="stylesheet" href="style_clien.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1><i class="fas fa-users"></i> Gestión de Clientes</h1>
+        
+        <div class="client-list">
+            
+            <div class="client-card" data-id="1">
+                <div class="card-header">
+                    <i class="fas fa-id-card"></i> 28.123.456
+                </div>
+                <div class="card-body">
+                    <label for="nombre-1">Nombre:</label>
+                    <input type="text" id="nombre-1" value="Juan">
+                    
+                    <label for="apellido-1">Apellido:</label>
+                    <input type="text" id="apellido-1" value="Pérez">
+                    
+                    <label for="dni-1">DNI:</label>
+                    <input type="text" id="dni-1" value="28.123.456">
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-save"><i class="fas fa-save"></i> Guardar</button>
+                    <button class="btn btn-delete"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                </div>
+            </div>
+
+            <div class="client-card" data-id="2">
+                <div class="card-header">
+                    <i class="fas fa-id-card"></i> 30.789.123
+                </div>
+                <div class="card-body">
+                    <label for="nombre-2">Nombre:</label>
+                    <input type="text" id="nombre-2" value="María">
+                    
+                    <label for="apellido-2">Apellido:</label>
+                    <input type="text" id="apellido-2" value="González">
+                    
+                    <label for="dni-2">DNI:</label>
+                    <input type="text" id="dni-2" value="30.789.123">
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-save"><i class="fas fa-save"></i> Guardar</button>
+                    <button class="btn btn-delete"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                </div>
+            </div>
+
+            <div class="client-card" data-id="3">
+                <div class="card-header">
+                    <i class="fas fa-id-card"></i> 25.456.789
+                </div>
+                <div class="card-body">
+                    <label for="nombre-3">Nombre:</label>
+                    <input type="text" id="nombre-3" value="Carlos">
+                    
+                    <label for="apellido-3">Apellido:</label>
+                    <input type="text" id="apellido-3" value="Rodríguez">
+                    
+                    <label for="dni-3">DNI:</label>
+                    <input type="text" id="dni-3" value="25.456.789">
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-save"><i class="fas fa-save"></i> Guardar</button>
+                    <button class="btn btn-delete"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Turnos Pendientes</title>
+    <link rel="stylesheet" href="style_citas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1><i class="fas fa-calendar-alt"></i> Turnos Pendientes (Citas)</h1>
+        
+        <button class="btn btn-primary" id="btn-nueva-cita">
+            <i class="fas fa-plus-circle"></i> Agendar Nueva Cita
+        </button>
+
+        <div class="appointments-list">
+            
+            <div class="appointment-card pending" data-id="T1">
+                <div class="card-status">
+                    <i class="fas fa-clock"></i> Pendiente
+                </div>
+                <div class="card-details">
+                    <p class="time">10:00 AM</p>
+                    <p class="date">Hoy, 11 Nov.</p>
+                </div>
+                <div class="card-info">
+                    <p><strong>Cliente:</strong> Franco Colapinto</p>
+                    <p><strong>Vehículo:</strong> Renault 12 (Patente: AA123ZZ)</p>
+                    <p class="reason">Falla de luces bajas / Service rápido.</p>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-finalizar" data-action="finalizar"><i class="fas fa-arrow-right"></i> Finalizar</button>
+                    <button class="btn btn-reschedule" data-action="reschedule"><i class="fas fa-redo-alt"></i> Reprogramar</button>
+                </div>
+            </div>
+
+            <div class="appointment-card pending" data-id="T2">
+                <div class="card-status">
+                    <i class="fas fa-clock"></i> Pendiente
+                </div>
+                <div class="card-details">
+                    <p class="time">14:30 PM</p>
+                    <p class="date">Hoy, 11 Nov.</p>
+                </div>
+                <div class="card-info">
+                    <p><strong>Cliente:</strong> Carlos Gómez</p>
+                    <p><strong>Vehículo:</strong> Ford Ranger (Patente: AF456BC)</p>
+                    <p class="reason">Ruido en tren delantero, requiere diagnóstico.</p>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-finalizar" data-action="finalizar"><i class="fas fa-arrow-right"></i> Finalizar</button>
+                    <button class="btn btn-reschedule" data-action="reschedule"><i class="fas fa-redo-alt"></i> Reprogramar</button>
+                </div>
+            </div>
+
+            <div class="appointment-card upcoming" data-id="T3">
+                <div class="card-status">
+                    <i class="fas fa-calendar-check"></i> Próximo
+                </div>
+                <div class="card-details">
+                    <p class="time">09:00 AM</p>
+                    <p class="date">Mañana, 12 Nov.</p>
+                </div>
+                <div class="card-info">
+                    <p><strong>Cliente:</strong> Lionel Messi</p>
+                    <p><strong>Vehículo:</strong> Mercedes c350 (Patente: AB987XY)</p>
+                    <p class="reason">Cambio de correa de distribución.</p>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-reschedule" data-action="reschedule"><i class="fas fa-redo-alt"></i> Reprogramar</button>
+                    <button class="btn btn-cancel" data-action="cancel"><i class="fas fa-times"></i> Cancelar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="app_citas.js"></script>
+</body>
+</html>
