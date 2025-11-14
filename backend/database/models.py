@@ -10,10 +10,12 @@ class Cliente(Base):
     nombre = Column(String(100))
     email = Column(String(100), unique=True)
     contrasena = Column(String(100))
-    vehiculos = relationship("Vehiculo", back_populates="cliente")
-    turnos = relationship("Turno", back_populates="cliente")
     DNI = Column(Integer, unique=True)
-    telefono = Column(Integer)
+    telefono = Column(String(20))
+    vehiculo_id = Column(Integer)
+    
+    vehiculos = relationship("Vehiculo",foreign_keys="[Vehiculo.cliente_id]",back_populates="cliente")
+    turnos = relationship("Turno", back_populates="cliente")
 
 
 class Vehiculo(Base):
@@ -50,7 +52,7 @@ class Turno(Base):
     empleado_id = Column(Integer, ForeignKey("empleado.id"), nullable=False)
     fecha = Column(String, nullable=False)
     hora = Column(String, nullable=False)
-    telefono = Column(Integer) 
+    telefono = Column(String(20)) 
     DNI = Column(String(20))
     estado = Column(String(50), default="pendiente")
 
@@ -70,7 +72,7 @@ class OrdenDeServicio(Base):
     modelo = Column(String(50))
     marca = Column(String(50))
     nombre_cliente = Column(String(100))
-    telefono_cliente = Column(Integer)
+    telefono_cliente = Column(String(20))
     dni_cliente = Column(String(20))
     fecha_cliente = Column(String)
     empleado_id = Column(Integer, ForeignKey("empleado.id"))

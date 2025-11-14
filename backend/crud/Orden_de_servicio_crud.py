@@ -15,7 +15,7 @@ def create_orden(db: Session, orden: OrdenDeServicio):
     if not cliente:
         raise ValueError("Cliente no encontrado")
     
-    vehiculo = db.query(Vehiculo).filter(Vehiculo.patente == orden.patente).first()
+    vehiculo = db.query(Vehiculo).filter(Vehiculo.patente == orden.patente, Vehiculo.modelo == orden.modelo, Vehiculo.marca == orden.marca, Vehiculo.anio == orden.anio).first()
     
     if not vehiculo:
         #Si NO existe, lo creamos
@@ -28,10 +28,13 @@ def create_orden(db: Session, orden: OrdenDeServicio):
         )
         db.add(vehiculo)
         db.flush()  #Para obtener el ID del vehículo
+
     else:
         vehiculo.modelo = orden.modelo
         vehiculo.marca = orden.marca
         vehiculo.anio = orden.anio
+    
+    cliente.vehiculo_id = vehiculo.id
     
     #Crear la orden con los datos autocompletados
     nueva_orden = OrdenDeServicio(
@@ -52,9 +55,13 @@ def create_orden(db: Session, orden: OrdenDeServicio):
         vehiculo_id=vehiculo.id
     )
     
+    turno.estado = "finalizado" #Actualiza el estado del turno en la a finalizado
+    
+    
     db.add(nueva_orden)
     db.commit()
     db.refresh(nueva_orden)
+    db.refresh(cliente)
     return nueva_orden
 
 def actualizar_turno_estado(db: Session, turno_id: int, nuevo_estado: str):

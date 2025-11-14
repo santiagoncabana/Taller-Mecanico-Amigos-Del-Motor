@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from ..database.database import get_db
-from ..crud.turno_cliente_crud import create_turno, get_turnos, get_turno_by_id, update_turno, delete_turno, update_turno_estado
+from ..crud.turno_cliente_crud import create_turno, get_turnos, get_turno_by_id, update_turno, delete_turno, update_turno_estado, confirmar_llegada_turno
 from ..schemas.turno_schema import TurnoCreate, TurnoResponse, TurnoUpdate
 from database.models import Cliente, Turno
 from fastapi import Form
@@ -21,6 +21,18 @@ def crear_nuevo_turno(turno: TurnoCreate, db: Session = Depends(get_db)):
             "fecha": nuevo_turno.fecha,
             "hora": nuevo_turno.hora,
             "Estado:": "Pendiente"
+        }
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    
+@router.put("/turnos/{turno_id}/confirmar-llegada")
+def confirmar_llegada_cliente(turno_id: int, db: Session = Depends(get_db)):
+    try:
+        turno = confirmar_llegada_turno(db, turno_id)
+        return {
+            "mensaje": "Cliente confirmado en taller",
+            "turno_id": turno.id,
+            "estado": turno.estado
         }
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))

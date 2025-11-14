@@ -56,7 +56,7 @@ class OrdenResponse(BaseModel):
     marca: str
     anio: int
     nombre_cliente: str
-    telefono_cliente: int
+    telefono_cliente: str
     dni_cliente: str
     fecha_turno: str
     empleado_id: int

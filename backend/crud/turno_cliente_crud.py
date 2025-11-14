@@ -15,7 +15,7 @@ from MecApp.backend.database.models import Turno, Empleado, Cliente
 from MecApp.backend.schemas.turno_schema import TurnoCreate
 
 def conseguir_empleado_disponible(db: Session, fecha: str, hora: str) -> Empleado | None:
-    # Subconsulta: IDs de empleados que ya tienen turno en esa fecha y hora
+    #Subconsulta: IDs de empleados que ya tienen turno en esa fecha y hora
     empleados_ocupados = (
         db.query(Turno.empleado_id)
         .filter(Turno.fecha == fecha, Turno.hora == hora)
@@ -73,6 +73,23 @@ def update_turno_estado(db: Session, turno_id: int, nuevo_estado: str):
         db.refresh(turno)
         return turno
     return None
+
+
+def confirmar_llegada_turno(db: Session, turno_id: int):
+    #Buscar el turno
+    turno = db.query(Turno).filter(Turno.id == turno_id).first()
+    
+    if not turno:
+        raise ValueError("Turno no encontrado")
+    
+    #Validar que el turno esté pendiente
+    if turno.estado == "pendiente":
+        turno.estado = "En curso"
+    
+    db.commit()
+    db.refresh(turno)
+    
+    return turno
 
 
 #Otras CRUD funciones
