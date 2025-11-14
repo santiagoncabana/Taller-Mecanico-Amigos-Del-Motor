@@ -2,8 +2,9 @@
 ## Desarrolladores
 ### ⚙️ Backend (Python, django, etc.)
 - [Santiago Nahuel Cabaña](https://github.com/santiagoncabana)
-- [Marcos Medina]
-- [Angel Rojas]
+- [Marcos Medina](https://github.com/15agustinrojas-jpg)
+- [Angel Rojas](https://github.15agustinrojas-jpg)
+
 ### 🎨 Frontend (Html, CSS, Javascript, django, etc.)
 - [Sahid Nahuel Esquivel Altamirano](https://github.com/Sahid-cyber)
 - [Rodrigo Raul](https://github.com/RodriAC123)
