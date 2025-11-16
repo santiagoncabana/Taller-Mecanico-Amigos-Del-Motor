@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, List
 
         
 class ClienteOut(BaseModel):  #ClienteOut se usa para la respuesta (response_model) y agrega id
@@ -11,3 +11,26 @@ class ClienteOut(BaseModel):  #ClienteOut se usa para la respuesta (response_mod
     
     class config:
         orm_mode = True #orm_mode = True permite que Pydantic convierta instancias ORM (objetos SQLAlchemy) a dict/JSON sin problemas
+        
+class VehiculoResponse(BaseModel):
+    id: int
+    patente: str
+    modelo: str
+    marca: Optional[str] = None
+    anio: Optional[int] = None
+    
+    class Config:
+        from_attributes = True
+
+
+class ClienteResponse(BaseModel):
+    id: int
+    nombre: str
+    email: str
+    DNI: str
+    telefono: Optional[str] = None
+    vehiculo_id: Optional[int] = None  #Vehículo principal
+    vehiculos: List[VehiculoResponse] = []  #Lista de TODOS sus vehículos
+    
+    class Config:
+        from_attributes = True

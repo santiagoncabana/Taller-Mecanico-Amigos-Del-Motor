@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from ..database.database import get_db
-from ..crud.turno_cliente_crud import create_turno, get_turnos, get_turno_by_id, update_turno, delete_turno, update_turno_estado, confirmar_llegada_turno
-from ..schemas.turno_schema import TurnoCreate, TurnoResponse, TurnoUpdate
+from ..crud.turno_cliente_crud import create_turno, get_turnos, get_turno_y_orden_por_DNI_cliente, update_turno, delete_turno, update_turno_estado, confirmar_llegada_turno
+from ..schemas.turno_schema import TurnoCreate, TurnoResponse, TurnoUpdate, OrdenResponse
 from database.models import Cliente, Turno
-from fastapi import Form
+from typing import List
 
 router = APIRouter(prefix="/api/turnos", tags=["turnos"])
 
@@ -42,23 +42,37 @@ def confirmar_llegada_cliente(turno_id: int, db: Session = Depends(get_db)):
 def obtenerTodosLosTurnos(db: Session = Depends(get_db)):
     return get_turnos(db)
 
-@router.get("/{turno_id}", response_model=TurnoResponse)
-def obtener_turno(turno_id: int, db: Session = Depends(get_db)):
-    turno = get_turno_by_id(db, turno_id)
+"""@router.get("/{turno_DNI}", response_model=list[TurnoResponse, OrdenResponse])
+def obtener_turno(turno_DNI: str, turno_id: int, db: Session = Depends(get_db)):
+    turno = get_turno_y_orden_por_DNI_cliente(db, turno_DNI, turno_id)
     if not turno:
         raise HTTPException(status_code=404, detail="Turno no encontrado")
-    return turno
+    return turno"""
+    
+@router.get("/turnos/buscar/{dni}/todos", response_model=List[TurnoResponse])
+def buscar_todos_turnos_por_dni(dni: str, db: Session = Depends(get_db)):
+    turnos = (
+        db.query(Turno)
+        .options(joinedload(Turno.orden_servicio))
+        .filter(Turno.DNI == dni)
+        .all()
+    )
+    
+    if not turnos:
+        raise HTTPException(404, f"No se encontraron turnos para el DNI {dni}")
+    
+    return turnos
 
-@router.put("/{turno_id}", response_model=TurnoResponse)
-def actualizar_turno_existente(turno_id: int, turno: TurnoCreate, db: Session = Depends(get_db)):
-    updated = update_turno(db, turno_id, turno.dict(exclude={"cliente_id"}))  # No cambiar cliente_id
+@router.put("/{turno_DNI}", response_model=TurnoResponse)
+def actualizar_turno_existente(turno_DNI: str, turno: TurnoCreate, db: Session = Depends(get_db)):
+    updated = update_turno(db, turno_DNI, turno.dict(exclude={"cliente_id"}))  # No cambiar cliente_id
     if not updated:
         raise HTTPException(status_code=404, detail="Turno no encontrado")
     return updated
 
 @router.delete("/{turno_id}")
-def eliminar_turno_existente(turno_id: int, db: Session = Depends(get_db)):
-    deleted = delete_turno(db, turno_id)
+def eliminar_turno_existente(turno_DNI: str, db: Session = Depends(get_db)):
+    deleted = delete_turno(db, turno_DNI)
     if not deleted:
         raise HTTPException(status_code=404, detail="Turno no encontrado")
     return {"message": "Turno eliminado"}

@@ -1,6 +1,6 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import and_
-from ..database.models import Turno, Empleado
+from ..database.models import Turno, Empleado, OrdenDeServicio
 from ..schemas.turno_schema import TurnoCreate
 from sqlalchemy import func
 
@@ -96,11 +96,22 @@ def confirmar_llegada_turno(db: Session, turno_id: int):
 def get_turnos(db: Session):
     return db.query(Turno).all()
 
-def get_turno_by_id(db: Session, turno_id: int):
-    return db.query(Turno).filter(Turno.id == turno_id).first()
+def get_turno_y_orden_por_DNI_cliente(db: Session, dni: str):
+    turno = (
+        db.query(Turno)
+        .options(joinedload(Turno.orden_servicio))  #Cargar la relación
+        .filter(Turno.DNI == dni)
+        .first()
+    )
+    
+    if not turno:
+        raise ValueError(f"No se encontró turno para ese DNI")
+    
+    return turno
+    
 
-def update_turno(db: Session, turno_id: int, updated_data: dict):
-    db_turno = get_turno_by_id(db, turno_id)
+def update_turno(db: Session, turno_DNI: str, updated_data: dict):
+    db_turno = get_turno_y_orden_por_DNI_cliente(db, turno_DNI)
     if not db_turno:
         return None
     for key, value in updated_data.items():
@@ -109,8 +120,8 @@ def update_turno(db: Session, turno_id: int, updated_data: dict):
     db.refresh(db_turno)
     return db_turno
 
-def delete_turno(db: Session, turno_id: int):
-    db_turno = get_turno_by_id(db, turno_id)
+def delete_turno(db: Session, turno_DNI: str):
+    db_turno = get_turno_y_orden_por_DNI_cliente(db, turno_DNI)
     if not db_turno:
         return None
     db.delete(db_turno)

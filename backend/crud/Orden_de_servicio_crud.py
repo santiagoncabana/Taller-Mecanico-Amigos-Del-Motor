@@ -36,7 +36,7 @@ def create_orden(db: Session, orden: OrdenDeServicio):
     
     cliente.vehiculo_id = vehiculo.id
     
-    #Crear la orden con los datos autocompletados
+    #Datos ingresados por el empleado al crear la orden
     nueva_orden = OrdenDeServicio(
         turno_id=orden.turno_id,
         descripcion_trabajo=orden.descripcion_trabajo,

@@ -2,16 +2,36 @@
 from pydantic import BaseModel
 from datetime import date, time
 from database.models import Cliente, Turno
+from typing import Optional
 
 class TurnoCreate(BaseModel):
     # Datos del Cliente
     telefono: str
-    DNI: int
+    DNI: str
     
     # Datos del Turno
     fecha: str  
     hora: str   
     estado: str = "Pendiente"
+    
+class OrdenResponse(BaseModel):
+    id: int
+    turno_id: int
+    descripcion_trabajo: str
+    precio_total: int
+    patente: str
+    modelo: str
+    marca: str
+    anio: int
+    nombre_cliente: str
+    telefono_cliente: str
+    dni_cliente: str
+    fecha_cliente: str
+    empleado_id: int
+    vehiculo_id: int
+    
+    class Config:
+        from_attributes = True
 
 
 class TurnoResponse(BaseModel):
@@ -20,6 +40,8 @@ class TurnoResponse(BaseModel):
     empleado_id: int
     fecha: str
     hora: str
+    estado: str
+    orden_servicio: Optional[OrdenResponse] = None
 
     class Config:
         from_attributes = True
@@ -46,7 +68,7 @@ class OrdenCreate(BaseModel):
     marca: str
     anio: int
 
-class OrdenResponse(BaseModel):
+"""class OrdenResponse(BaseModel):
     id: int
     turno_id: int
     descripcion_trabajo: str
@@ -63,4 +85,4 @@ class OrdenResponse(BaseModel):
     vehiculo_id: int
     
     class Config:
-        from_attributes = True
+        from_attributes = True"""

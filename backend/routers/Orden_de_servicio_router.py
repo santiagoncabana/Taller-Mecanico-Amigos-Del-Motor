@@ -36,3 +36,4 @@ def cambiar_estado(turno_id: int, estado: str, db: Session = Depends(get_db)):
         return {"mensaje": "Estado actualizado", "turno_id": turno.id}
     except ValueError as e:
         raise HTTPException(400, str(e))
+    

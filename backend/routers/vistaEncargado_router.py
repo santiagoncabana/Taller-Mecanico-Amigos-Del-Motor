@@ -1,21 +1,22 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from typing import List
-from ..crud.vistas_crud import obtener_clientes, obtener_clientes_por_dni
-from ..schemas.cliente_schemas import ClienteOut
+from ..crud.vistas_crud import obtener_cliente_por_dni, obtener_todos_clientes
+from ..schemas.cliente_schemas import ClienteOut,ClienteResponse
 from ..database.database import get_db
 from fastapi import HTTPException
 
 
 router = APIRouter(prefix="/api/clientes", tags=["clientes"])
 
-@router.get("/", response_model=list[ClienteOut])
-def obtener_todos_los_clientes(db: Session = Depends(get_db)):
-    return obtener_clientes(db)
+@router.get("/clientes", response_model=List[ClienteResponse])
+def listar_clientes(db: Session = Depends(get_db)):
+    clientes = obtener_todos_clientes(db)
+    return clientes
 
 @router.get("/dni/{dni}")
-def obtener_cliente_por_dni(dni: str, db: Session = Depends(get_db)):
-    cliente = obtener_clientes_por_dni(db, dni)
+def obtener_cliente_por_dni_endpoint(dni: str, db: Session = Depends(get_db)):
+    cliente = obtener_cliente_por_dni(db, dni)
     
     if not cliente:
         raise HTTPException(status_code=404, detail="Cliente no encontrado")
@@ -26,12 +27,26 @@ def obtener_cliente_por_dni(dni: str, db: Session = Depends(get_db)):
         "nombre": cliente.nombre,
         "email": cliente.email,
         "contrasena": cliente.contrasena,
-        "DNI": cliente.DNI,
-        "telefono": cliente.telefono
+        "DNI": (cliente.DNI),
+        "telefono": cliente.telefono,
+        "vehiculo_id": cliente.vehiculo_id,  #AGREGAR vehículo principal
+        "vehiculos": [  #AGREGAR lista de vehículos
+            {
+                "id": v.id,
+                "patente": v.patente,
+                "modelo": v.modelo,
+                "marca": v.marca,
+                "anio": v.anio
+            }
+            for v in cliente.vehiculos
+        ]
     }
     
     #Agregar mensaje si no tiene teléfono
     if not cliente.telefono:
         response["advertencia"] = "Este cliente aún no registró su número de teléfono"
+        
+    # Agregar mensaje si no tiene vehículos
+    if not cliente.vehiculos:
+        response["advertencia_vehiculos"] = "Este cliente aún no tiene vehículos registrados"
     return response
-
