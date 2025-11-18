@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 #Registro
 class ClienteRegister(BaseModel):
@@ -26,7 +27,7 @@ class EmpleadoRegister(BaseModel):
     rol: str  # Puedes establecer el rol fijo aquí, por ejemplo: "encargado"
     disponible: bool
 
-# class UserAuthResponse(BaseModel):
-#     nombre: str
-
-#     email: str
+class ClienteUpdate(BaseModel):
+    nombre: Optional[str] = None
+    email: Optional[str] = None
+    contrasena: Optional[str] = None

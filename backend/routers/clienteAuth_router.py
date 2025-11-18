@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from ..database.database import get_db, Session
-from ..crud.auth_cliente_crud import create_cliente,autenticacion_cliente  ,autenticacion_encargado ,create_empleado
-from ..schemas.auth_schema import ClienteRegister, ClienteLogin
+from ..crud.auth_cliente_crud import create_cliente,autenticacion_cliente  ,autenticacion_encargado ,create_empleado, actualizar_perfil_por_dni
+from ..schemas.auth_schema import ClienteRegister, ClienteLogin, ClienteUpdate
 from ..database.models import Cliente
 from ..schemas.auth_schema import EncargadoLogin, EmpleadoRegister
 from fastapi import Form
@@ -12,11 +12,6 @@ SECRET_KEY = "cabana"
 ALGORITHM = "HS256"
 
 router = APIRouter()
-
-"""# Registro de cliente
-@router.post("/register",tags=["register cliente"])
-def registerCliente(cliente: ClienteRegister, db: Session = Depends(get_db)):
-    return create_cliente(db, cliente)"""
 
 @router.post("/register")
 def register(
@@ -63,3 +58,25 @@ def loginEncargado(cliente: EncargadoLogin, db: Session = Depends(get_db)):
             "rol": user.rol
         }
     raise HTTPException(status_code=401, detail="Credenciales incorrectas para el encargado")
+
+#editar perfil del cliente
+@router.put("/clientes/{dni}/editar")
+def actualizar_perfil_cliente(
+    dni: str,
+    datos: ClienteUpdate,
+    db: Session = Depends(get_db)
+):
+    try:
+        cliente = actualizar_perfil_por_dni(db, dni, datos)
+        
+        return {
+            "mensaje": "Perfil actualizado exitosamente",
+            "cliente": {
+                "id": cliente.id,
+                "nombre": cliente.nombre,
+                "email": cliente.email,
+                "DNI": str(cliente.DNI)
+            }
+        }
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))

@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from ..database.models import Cliente,Empleado
-from ..schemas.auth_schema import ClienteRegister, EmpleadoRegister
+from ..schemas.auth_schema import ClienteRegister, EmpleadoRegister, ClienteUpdate
 from MecApp.backend.security.security import pwd_context
 
 def create_cliente(db: Session, cliente: ClienteRegister):
@@ -50,3 +50,26 @@ def autenticacion_encargado(db: Session, correo: str, contrasena_user: str):
     if empleado.contrasena == contrasena_user:
         return empleado
     return None
+
+#Editar perfil cliente
+def actualizar_perfil_por_dni(db: Session, dni: str, ClienteUpdate:ClienteUpdate):
+    #Buscar el cliente por DNI
+    cliente = db.query(Cliente).filter(Cliente.DNI == dni).first()
+    
+    if not cliente:
+        raise ValueError(f"No se encontró cliente con DNI {dni}")
+    
+    #Actualizar campos
+    if ClienteUpdate.nombre:
+        cliente.nombre = ClienteUpdate.nombre
+    
+    if ClienteUpdate.email:
+        cliente.email = ClienteUpdate.email
+    
+    if ClienteUpdate.contrasena:
+        cliente.contrasena = ClienteUpdate.contrasena
+    
+    db.commit()
+    db.refresh(cliente)
+    
+    return cliente

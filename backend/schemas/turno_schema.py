@@ -68,21 +68,3 @@ class OrdenCreate(BaseModel):
     marca: str
     anio: int
 
-"""class OrdenResponse(BaseModel):
-    id: int
-    turno_id: int
-    descripcion_trabajo: str
-    precio_total: int
-    patente: str
-    modelo: str
-    marca: str
-    anio: int
-    nombre_cliente: str
-    telefono_cliente: str
-    dni_cliente: str
-    fecha_turno: str
-    empleado_id: int
-    vehiculo_id: int
-    
-    class Config:
-        from_attributes = True"""

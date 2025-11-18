@@ -35,6 +35,5 @@ def obtener_todos_clientes(db: Session):
 
 
 #Funciones de Vehiculos
-
 def obtener_todos_los_vehiculos(db:Session):
     return db.query(Vehiculo).all()
