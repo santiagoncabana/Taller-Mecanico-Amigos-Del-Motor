@@ -1,4 +1,15 @@
 /* Estilo base - Gris Claro */
+:root {
+    --primary-blue: #2563eb;
+    --dark-bg: #1a1a1a;
+    --sidebar-bg: #0f0f0f;
+    --card-bg: #ffffff;
+    --text-dark: #374151;
+    --text-light: #6b7280;
+    --border-color: #d1d5db;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #EFEFEF; /* Fondo gris muy claro */

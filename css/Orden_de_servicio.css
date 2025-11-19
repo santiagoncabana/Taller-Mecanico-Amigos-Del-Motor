@@ -1,11 +1,12 @@
 :root {
-    --primary: #3498db;
-    --secondary: #2c3e50;
-    --success: #27ae60;
-    --warning: #f39c12;
-    --danger: #e74c3c;
-    --light: #ecf0f1;
-    --dark: #34495e;
+    --primary-blue: #2563eb;
+    --dark-bg: #1a1a1a;
+    --sidebar-bg: #0f0f0f;
+    --card-bg: #ffffff;
+    --text-dark: #374151;
+    --text-light: #6b7280;
+    --border-color: #d1d5db;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 * {
