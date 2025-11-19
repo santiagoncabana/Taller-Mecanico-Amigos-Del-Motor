@@ -6,13 +6,15 @@
 }
 
 :root {
-    --primary-blue: #2563eb;
-    --dark-bg: #1a1a1a;
+    --primary-blue: #3B82F6;
+    /* aligned with encargado */
+    --dark-bg: #F9FAFB;
+    /* light page background to match encargado */
     --form-bg: #ffffff;
-    --text-dark: #374151;
-    --text-light: #6b7280;
-    --border-color: #d1d5db;
-    --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --text-dark: #111827;
+    --text-light: #6B7280;
+    --border-color: #E5E7EB;
+    --shadow: 0 8px 20px rgba(16, 24, 40, 0.06);
 }
 
 body {
@@ -23,6 +25,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px;
+    color: var(--text-dark);
 }
 
 /* Contenedor principal */
@@ -86,7 +89,7 @@ body {
 .form-group input:focus {
     outline: none;
     border-color: var(--primary-blue);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.08);
 }
 
 .form-group input::placeholder {
@@ -109,7 +112,7 @@ body {
 }
 
 .login-btn:hover {
-    background: #1d4ed8;
+    background: #2563eb;
     transform: translateY(-1px);
 }
 
@@ -274,23 +277,21 @@ body {
 
 .gear {
     font-size: 40px;
-    color: #1a1a1a;
-    /* Negro */
+    color: var(--primary-blue);
     position: absolute;
     z-index: 1;
 }
 
 .wrench {
     font-size: 32px;
-    color: #1a1a1a;
-    /* Negro */
+    color: var(--primary-blue);
     position: absolute;
     transform: rotate(45deg);
     z-index: 2;
 }
 
 .logo h1 {
-    color: #1a1a1a;
+    color: var(--text-dark);
     font-size: 28px;
     font-weight: 700;
     margin: 0;
