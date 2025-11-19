@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Encargado - MecApp</title>
+    <link rel="stylesheet" href="../css/encargado.css">
+    <link rel="stylesheet" href="../css/style_clien.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="nav-brand">
+            <div class="nav-logo">
+                <div class="nav-gear">⚙</div>
+                <div class="nav-wrench">🔧</div>
+            </div>
+            <span class="app-name">MecApp</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="./dashboard-encargado.html" class="nav-link">Inicio</a>
+            <a href="./clientes.html" class="nav-link">Clientes</a>
+            <a href="./vehiculos.html" class="nav-link">Vehículos</a>
+            <a href="./citas.html" class="nav-link">Citas</a>
+            <a href="./inventario.html" class="nav-link">Inventario</a>
+            <a href="./perfil-encargado.html" class="nav-link active">Mi Perfil</a>
+        </nav>
+        <div class="nav-user">
+            <span class="user-name">Encargado</span>
+            <div class="user-avatar">E</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-title">
+            <h1><i class="fas fa-user-cog"></i> Mi Perfil</h1>
+        </div>
+
+        <div class="profile-container">
+            <div class="card">
+                <div class="profile-header">
+                    <div class="profile-photo-section">
+                        <div class="photo-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <button type="button" class="secondary-btn">
+                            <i class="fas fa-camera"></i> Cambiar Foto
+                        </button>
+                    </div>
+
+                    <form class="profile-form">
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo</label>
+                            <input type="text" id="nombre" class="form-input" value="Encargado Actual" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" class="form-input" value="encargado@mecapp.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Contraseña</label>
+                            <div class="password-input">
+                                <input type="password" id="password" class="form-input" value="********" required>
+                                <button type="button" class="password-toggle">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="primary-btn">
+                                <i class="fas fa-save"></i> Guardar Cambios
+                            </button>
+                            <button type="button" class="secondary-btn">
+                                <i class="fas fa-times"></i> Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.querySelector('.password-toggle i');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.className = 'fas fa-eye-slash';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.className = 'fas fa-eye';
+            }
+        }
+
+        document.querySelector('.profile-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Cambios guardados correctamente');
+        });
+
+        document.querySelector('.secondary-btn').addEventListener('click', function () {
+            if (confirm('¿Estás seguro de que quieres descartar los cambios?')) {
+                document.getElementById('nombre').value = 'Encargado Actual';
+                document.getElementById('email').value = 'encargado@mecapp.com';
+                document.getElementById('password').value = '********';
+            }
+        });
+    </script>
+</body>
+
+</html>

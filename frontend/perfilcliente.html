@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - MecApp</title>
+    <link rel="stylesheet" href="../css/perfilcliente.css">
+    <link rel="stylesheet" href="../css/style_clien.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="nav-brand">
+            <div class="nav-logo">
+                <div class="nav-gear">⚙</div>
+                <div class="nav-wrench">🔧</div>
+            </div>
+            <span class="app-name">MecApp</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="./dashboard-cliente.html" class="nav-link">Inicio</a>
+            <a href="./mis-vehiculos.html" class="nav-link">Mis Vehículos</a>
+            <a href="./mis-citas.html" class="nav-link">Mis Citas</a>
+            <a href="./historial-cliente.html" class="nav-link">Mi Historial</a>
+            <a href="./perfil-cliente.html" class="nav-link active">Mi Perfil</a>
+        </nav>
+        <div class="nav-user">
+            <span class="user-name">Cliente</span>
+            <div class="user-avatar">C</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-title">
+            <h1><i class="fas fa-user"></i> Mi Perfil</h1>
+            <button class="primary-btn" id="btn-editar-perfil">
+                <i class="fas fa-edit"></i> Editar Perfil
+            </button>
+        </div>
+
+        <div class="profile-container">
+            <div class="card">
+                <div class="profile-header">
+                    <div class="profile-photo">
+                        <div class="photo-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <button type="button" class="secondary-btn" id="btn-cambiar-foto">
+                            <i class="fas fa-camera"></i> Cambiar Foto
+                        </button>
+                    </div>
+
+                    <form class="profile-form" id="form-perfil">
+                        <div class="form-group">
+                            <label for="nombre-cliente">Nombre Completo</label>
+                            <input type="text" id="nombre-cliente" class="form-input" value="Juan Pérez">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email-cliente">Correo Electrónico</label>
+                            <input type="email" id="email-cliente" class="form-input" value="juan.perez@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dni-cliente">DNI</label>
+                            <input type="text" id="dni-cliente" class="form-input" value="12345678">
+                        </div>
+
+                        <div class="form-group" id="grupo-password">
+                            <label for="password-cliente">Contraseña</label>
+                            <div class="password-input">
+                                <input type="password" id="password-cliente" class="form-input">
+                                <button type="button" class="password-toggle" id="toggle-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-actions" id="acciones-edicion">
+                            <button type="submit" class="primary-btn">Guardar Cambios</button>
+                            <button type="button" class="secondary-btn" id="btn-cancelar">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dniModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Verificación Requerida</h3>
+                <span class="close" id="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Para editar su perfil, ingrese su DNI:</p>
+                <div class="form-group">
+                    <input type="text" id="dni-verificacion" class="form-input" placeholder="Ingrese su DNI">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="primary-btn" id="btn-verificar-dni">Continuar</button>
+                    <button type="button" class="secondary-btn" id="btn-cancelar-modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/perfil-cliente.js"></script>
+</body>
+
+</html>
