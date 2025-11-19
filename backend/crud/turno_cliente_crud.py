@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import and_
-from ..database.models import Turno, Empleado, OrdenDeServicio
+from ..database.models import Turno, Empleado
 from ..schemas.turno_schema import TurnoCreate
 from sqlalchemy import func
 

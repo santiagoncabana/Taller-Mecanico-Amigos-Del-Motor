@@ -41,13 +41,6 @@ def confirmar_llegada_cliente(turno_id: int, db: Session = Depends(get_db)):
 @router.get("/", response_model=list[TurnoResponse])
 def obtenerTodosLosTurnos(db: Session = Depends(get_db)):
     return get_turnos(db)
-
-"""@router.get("/{turno_DNI}", response_model=list[TurnoResponse, OrdenResponse])
-def obtener_turno(turno_DNI: str, turno_id: int, db: Session = Depends(get_db)):
-    turno = get_turno_y_orden_por_DNI_cliente(db, turno_DNI, turno_id)
-    if not turno:
-        raise HTTPException(status_code=404, detail="Turno no encontrado")
-    return turno"""
     
 @router.get("/turnos/buscar/{dni}/todos", response_model=List[TurnoResponse])
 def buscar_todos_turnos_por_dni(dni: str, db: Session = Depends(get_db)):

@@ -6,6 +6,9 @@ from ..database.models import Cliente
 from ..schemas.auth_schema import EncargadoLogin, EmpleadoRegister
 from fastapi import Form
 from MecApp.backend.security.security import pwd_context
+from ..crud.turno_cliente_crud import get_turno_y_orden_por_DNI_cliente
+from typing import List
+from ..schemas.turno_schema import TurnoResponse
 
 
 SECRET_KEY = "cabana"
