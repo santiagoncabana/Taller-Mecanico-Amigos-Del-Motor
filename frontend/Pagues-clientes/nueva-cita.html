@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Formulario de Turno</title>
+    <link rel="stylesheet" href="../../css/cliente-css/form.css">
+</head>
+
+<body>
+    <header class="navbar-contenedor">
+        <div class="nav-brand">
+            <div class="nav-logo">⚙🔧</div>
+            <span class="app-name">MecApp</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="./dashboard-cliente.html" class="nav-link">Inicio</a>
+            <a href="./mis-vehiculos.html" class="nav-link">Mis Vehículos</a>
+            <a href="./mis-citas.html" class="nav-link active">Mis Citas</a>
+            <a href="./historial.html" class="nav-link">Mi Historial</a>
+            <a href="./perfil-cliente.html" class="nav-link">Mi Perfil</a>
+        </nav>
+        <div class="nav-user">
+            <span class="user-name">Cliente</span>
+            <div class="user-avatar">C</div>
+        </div>
+    </header>
+
+    <div class="contenedor-principal">
+        <form class="formulario-turno">
+
+            <h2 class="form-titulo">Formulario de Turno</h2>
+
+            <!-- Opción para subir logo/foto si aplica -->
+            <div class="form-logo-seccion">
+
+            </div>
+
+            <fieldset class="form-fieldset">
+                <legend class="form-legend">DATOS DE CONTACTO</legend>
+                <div class="form-input">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" placeholder="Nombre y Apellido" id="nombre">
+                </div>
+                <div class="form-input">
+                    <label for="email">Email</label>
+                    <input type="email" placeholder="Ejemplo@gmail.com" id="email">
+                </div>
+                <div class="form-input">
+                    <label for="telefono">Contacto</label>
+                    <input type="tel" placeholder="Numero Teléfono" id="telefono">
+                </div>
+            </fieldset>
+
+            <fieldset class="form-fieldset">
+                <legend class="form-legend">DATOS DEL VEHICULO</legend>
+                <div class="form-input">
+                    <label for="Modelo">Modelo</label>
+                    <input type="text" placeholder="Ford" id="Modelo">
+                </div>
+                <div class="form-input">
+                    <label for="Marca">Marca</label>
+                    <input type="text" placeholder="Fiesta" id="Marca">
+                </div>
+                <div class="form-input">
+                    <label for="Dominio">Patente</label>
+                    <input type="text" placeholder="Dominio" id="Dominio">
+                </div>
+            </fieldset>
+
+            <div class="form-input form-select-tipo">
+                <label for="tipo">Tipo de Cliente</label>
+                <select name="type-or-user" id="tipo">
+                    <option value="user1">Particular</option>
+                    <option value="user2">Empresa</option>
+                </select>
+            </div>
+
+            <footer class="form-footer">
+                <div class="form-boton-container">
+                    <button type="submit" class="btn-siguiente">Crear Turno</button>
+                </div>
+            </footer>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,352 @@
+/* Design system variables and base styles (moved here from style_clien.css) */
+:root {
+    --primary: #3B82F6;
+    --bg: #F9FAFB;
+    --card: #FFFFFF;
+    --text: #111827;
+    --muted: #6B7280;
+    --border: #E5E7EB;
+    --shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+}
+
+/* Navbar / Header (centralized) */
+.navbar {
+    background: var(--card);
+    padding: 0 2rem;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 18px;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-logo {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-gear {
+    font-size: 22px;
+    color: var(--primary);
+    position: absolute;
+    z-index: 1;
+}
+
+.nav-wrench {
+    font-size: 18px;
+    color: var(--primary);
+    position: absolute;
+    transform: rotate(45deg);
+    z-index: 2;
+}
+
+.app-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-menu a,
+.nav-menu .nav-link {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all .2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-menu a:hover,
+.nav-menu .nav-link:hover {
+    color: var(--primary);
+    background: rgba(59, 130, 246, 0.08);
+}
+
+.nav-menu .nav-link.active,
+.nav-menu .active {
+    color: var(--primary);
+    background: rgba(59, 130, 246, 0.08);
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-user .user-name {
+    font-weight: 500;
+}
+
+.nav-user .user-avatar {
+    width: 36px;
+    height: 36px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+/* Contenedor principal */
+
+
+/* Contenedor Principal (centra la tarjeta en la página) */
+.contenedor-principal {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 32px 16px;
+    box-sizing: border-box;
+    background: transparent;
+}
+
+/* Layout and form styles for perfilcliente.html (new class names) */
+.contenedor-principal {
+    display: flex;
+    justify-content: center;
+    padding: 24px 16px 80px;
+}
+
+.contenedor-perfil {
+    width: 100%;
+    max-width: 520px;
+    background-color: var(--card);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+    overflow: hidden;
+}
+
+.encabezado-perfil {
+    background: rgba(59, 130, 246, 0.12);
+    padding: 28px 20px;
+    text-align: center;
+}
+
+.titulo-perfil {
+    margin: 0 0 12px 0;
+    color: var(--text);
+    font-weight: 700;
+}
+
+.contenedor-foto {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #ddd;
+    margin: 0 auto 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+}
+
+.enlace-cambiar-foto {
+    display: inline-block;
+    margin-top: 6px;
+    color: var(--primary);
+    font-size: 14px;
+    border: 1px solid var(--primary);
+    border-radius: 6px;
+    padding: 4px 8px;
+    cursor: pointer;
+    width: fit-content;
+    margin: 0 auto;
+    background-color: #fff;
+
+}
+
+
+
+.formulario {
+    padding: 18px 20px 26px;
+}
+
+.campo-grupo {
+    margin-bottom: 14px;
+}
+
+.campo-entrada-contenedor {
+    display: block;
+}
+
+.campo-entrada {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 14px;
+    background: #fff;
+    color: var(--text);
+}
+
+.contenedor-botones-accion {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.boton-cancelar {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.boton-guardar {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+    .contenedor-principal {
+        padding: 16px;
+    }
+
+    .contenedor-perfil {
+        margin: 0;
+        border-radius: 8px;
+    }
+
+    .encabezado-perfil {
+        padding: 20px 12px;
+    }
+}
+
+.contenedor-perfil {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--card);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+    overflow: hidden;
+}
+
+/* Encabezado Azul */
+.encabezado-perfil {
+    background-color: #a0c4ff;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.titulo-perfil {
+    color: #111827;
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0;
+    margin-bottom: 20px;
+    /* Más margen para separar la foto */
+}
+
+/* NUEVOS ESTILOS: Foto de Perfil Circular */
+.contenedor-foto {
+    /* Estilos para el círculo */
+    width: 120px;
+    /* Tamaño del círculo */
+    height: 120px;
+    background-color: #ccc;
+    /* Color gris del placeholder */
+    border-radius: 50%;
+    /* Hace que el div sea un círculo */
+    margin: 0 auto 15px;
+    /* Centra horizontalmente y añade margen inferior */
+    display: flex;
+    /* Para centrar el contenido */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    /* Esto es clave si luego se carga una imagen dentro */
+    cursor: pointer;
+    /* Indica que es clickeable/interactivo */
+}
+
+.texto-placeholder {
+    /* Estilos para el texto "Foto de perfil" */
+    color: #555;
+    font-size: 14px;
+    line-height: 1.2;
+    padding: 5px;
+}
+
+/* Enlace "Cambiar Foto" */
+.enlace-cambiar-foto {
+    display: block;
+    color: #3498db;
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    /* Más margen para separar del formulario */
+}
+
+.enlace-cambiar-foto:hover {
+    text-decoration: underline;
+}
+
+
+/* Estilos del Formulario... (el resto se mantiene igual) */
+.formulario {
+    padding: 20px;
+}
+
+.campo-grupo {
+    margin-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------------------------ */

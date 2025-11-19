@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Turnos Finalizados - Cliente</title>
+    <link rel="stylesheet" href="../../css/cliente-css/dashboard-cliente.css">
+    <link rel="stylesheet" href="../../css/cliente-css/turnos-finalizados.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="nav-brand">
+            <div class="nav-logo">⚙🔧</div>
+            <span class="app-name">MecApp</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="./dashboard-cliente.html" class="nav-link">Inicio</a>
+            <a href="./mis-vehiculos.html" class="nav-link">Mis Vehículos</a>
+            <a href="./mis-citas.html" class="nav-link">Mis Citas</a>
+            <a href="./historial.html" class="nav-link active">Mi Historial</a>
+            <a href="./perfil-cliente.html" class="nav-link">Mi Perfil</a>
+        </nav>
+        <div class="nav-user">
+            <span class="user-name">Cliente</span>
+            <div class="user-avatar">C</div>
+        </div>
+    </header>
+
+    <main class="page">
+        <section class="card center-card">
+            <h2 class="h-title">Turnos Finalizados</h2>
+            <p class="muted">Aquí podés ver todas las citas/turnos que ya fueron finalizados.</p>
+
+            <div id="turnos-finalizados-list">
+                <div class="placeholder">Cargando turnos finalizados...</div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../../js/turnos-finalizados.js"></script>
+</body>
+
+</html>

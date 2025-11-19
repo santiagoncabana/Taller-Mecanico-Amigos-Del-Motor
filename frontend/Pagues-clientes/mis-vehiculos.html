@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Mis Vehículos - Cliente</title>
+    <link rel="stylesheet" href="../../css/cliente-css/dashboard-cliente.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="nav-brand">
+            <div class="nav-logo">⚙🔧</div>
+            <span class="app-name">MecApp</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="./dashboard-cliente.html" class="nav-link">Inicio</a>
+            <a href="./mis-vehiculos.html" class="nav-link active">Mis Vehículos</a>
+            <a href="./mis-citas.html" class="nav-link">Mis Citas</a>
+            <a href="./historial.html" class="nav-link">Mi Historial</a>
+            <a href="./perfil-cliente.html" class="nav-link">Mi Perfil</a>
+        </nav>
+        <div class="nav-user">
+            <span class="user-name">Cliente</span>
+            <div class="user-avatar">C</div>
+        </div>
+    </header>
+
+    <main class="page">
+        <section class="card">
+            <h2 class="h-title">Mis Vehículos</h2>
+            <!-- Endpoint: GET /api/clientes/dni/{dni} (campo vehiculos)  -->
+
+            <div id="vehiculos-list">
+                <div class="placeholder">Cargando vehículos…</div>
+            </div>
+
+            <!-- Nota: esta pantalla es de solo lectura — no se permite agregar vehículos desde aquí -->
+        </section>
+    </main>
+    <script src="../../js/mis-vehiculos.js"></script>
+</body>
+
+</html>

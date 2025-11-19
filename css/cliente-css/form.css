@@ -1,0 +1,464 @@
+/* body {
+    margin: 0;
+    font-family: sans-serif;
+    color: #ddd;
+    background: linear-gradient(to bottom, #333, #000)
+}
+
+form {
+    background-color: transparent;
+    padding: 20px 0;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0px 0px 55px #fff2;
+    margin-top: 50px;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+h2 {
+    text-align: center;
+    margin: 0;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: 100;
+    font-size: 1.3em;
+    padding: 10px;
+}
+
+.form_input {
+    padding: 6px 20px;
+}
+
+
+
+body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    color: var(--text);
+    background: var(--bg);
+}
+
+form {
+    background-color: var(--card);
+    padding: 20px;
+    max-width: 720px;
+    margin: auto;
+    box-shadow: var(--shadow);
+    margin-top: 40px;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 40px;
+    border: 1px solid var(--border);
+}
+
+h2 {
+    text-align: center;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding: 10px;
+    color: var(--text)
+}
+
+.form_input {
+    padding: 8px 12px
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    background: #fff;
+    border-radius: 4px;
+    color: var(--text)
+}
+
+option {
+    background: #fff;
+    color: var(--text)
+}
+
+textarea {
+    min-width: 100%;
+    resize: none;
+    min-height: 102px;
+    font-family: inherit
+}
+
+label {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text)
+}
+
+.checkbox {
+    width: auto;
+    height: initial
+}
+
+fieldset {
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    padding: 10px;
+    margin: 16px
+}
+
+legend {
+    padding: 0 8px;
+    color: var(--muted)
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none
+}
+
+footer {
+    width: 100%;
+    margin-top: 20px
+}
+
+.Boton_container {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px
+}
+
+@media(max-width:600px) {
+    .Boton_container {
+        flex-direction: column
+    }
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --------------------------------------------------------------------- */
+/* 1. Variables y Estilos Base */
+/* --------------------------------------------------------------------- */
+
+:root {
+    --color-principal: #3498db;
+    /* Azul para énfasis */
+    --color-secundario: #f8f9fa;
+    /* Gris claro de fondo */
+    --color-texto: #333;
+    --color-texto-claro: #999;
+    --color-fondo-pagina: #fff;
+    --color-borde: #ccc;
+    --sombra-suave: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    color: var(--color-texto);
+    background-color: var(--color-secundario);
+    min-height: 100vh;
+}
+
+/* --------------------------------------------------------------------- */
+/* 2. Estilos de Barra de Navegación (Navbar) */
+/* --------------------------------------------------------------------- */
+
+.navbar-contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--color-fondo-pagina);
+    box-shadow: var(--sombra-suave);
+    border-bottom: 1px solid #eee;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    margin-right: 8px;
+    color: var(--color-principal);
+}
+
+.app-name {
+    color: var(--color-texto);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    color: var(--color-texto-claro);
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-link:hover {
+    color: var(--color-texto);
+    background-color: #f0f0f0;
+}
+
+.nav-link.active {
+    background-color: #e6f0ff;
+    /* Fondo azul muy suave para la pestaña activa */
+    color: var(--color-principal);
+    font-weight: 500;
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+}
+
+.user-name {
+    margin-right: 10px;
+    color: var(--color-texto);
+}
+
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    background-color: var(--color-principal);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+/* --------------------------------------------------------------------- */
+/* 3. Estilos del Formulario */
+/* --------------------------------------------------------------------- */
+
+.contenedor-principal {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.formulario-turno {
+    background-color: var(--color-fondo-pagina);
+    padding: 30px 40px;
+    max-width: 600px;
+    /* Ancho ajustado para que sea más estrecho */
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.form-titulo {
+    text-align: center;
+    margin: 0 0 30px 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--color-texto);
+}
+
+/* Sección Opcional de Logo/Foto de Perfil */
+.form-logo-seccion {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo-placeholder {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.logo-texto {
+    color: var(--color-texto-claro);
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+
+/* Fieldset y Legend (Agrupaciones de datos) */
+.form-fieldset {
+    border: none;
+    /* Quitamos el borde para un look limpio */
+    padding: 0;
+    margin: 20px 0;
+}
+
+.form-legend {
+    padding: 0;
+    color: var(--color-texto-claro);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    text-align: center;
+    /* Alineación al centro como en la imagen */
+    width: 100%;
+}
+
+.form-input {
+    padding: 10px 0;
+    text-align: center;
+    /* Centrar elementos internos */
+}
+
+/* Etiquetas y Campos de Entrada */
+label {
+    display: block;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-texto);
+    margin-bottom: 4px;
+    font-weight: 500;
+    text-align: center;
+    /* Alineación de la etiqueta */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select {
+    width: 70%;
+    /* Hacemos los inputs más estrechos, centrados en el diseño */
+    display: inline-block;
+    /* Para que se centren con text-align: center; */
+    padding: 10px 12px;
+    border: 1px solid var(--color-borde);
+    background: #fff;
+    border-radius: 4px;
+    color: var(--color-texto);
+    margin: 5px 0 10px 0;
+    text-align: center;
+    /* Texto de entrada centrado */
+}
+
+input::placeholder {
+    color: #bdbdbd;
+}
+
+/* Estilo para el campo select */
+.form-select-tipo select {
+    appearance: none;
+    /* Elimina estilos nativos en algunos navegadores */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="gray" d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px;
+}
+
+
+/* --------------------------------------------------------------------- */
+/* 4. Pie de Página y Botones */
+/* --------------------------------------------------------------------- */
+
+.form-footer {
+    width: 100%;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.form-boton-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 400px;
+    /* Limita el ancho del contenedor de botones */
+    margin: auto;
+    /* Centra el contenedor de botones */
+}
+
+.form-boton-container button {
+    flex-grow: 1;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+.btn-anterior {
+    background-color: var(--color-secundario);
+    color: var(--color-texto-claro);
+    border: 1px solid var(--color-borde);
+}
+
+.btn-anterior:hover {
+    background-color: #e9ecef;
+}
+
+.btn-siguiente {
+    background-color: var(--color-principal);
+    color: white;
+}
+
+.btn-siguiente:hover {
+    background-color: #2980b9;
+}
+
+/* Media Query para móvil */
+@media(max-width: 600px) {
+    .formulario-turno {
+        padding: 20px;
+    }
+
+    .form-boton-container {
+        flex-direction: column;
+        gap: 10px;
+        max-width: 100%;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select {
+        width: 90%;
+    }
+}

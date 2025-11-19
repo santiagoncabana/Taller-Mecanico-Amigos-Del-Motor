@@ -1,0 +1,118 @@
+/* perfil-encargado.css - Estilos para editar el perfil del encargado */
+
+:root {
+    --primary: #2563eb;
+    --muted: #6b7280;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --border: #e5e7eb;
+    --radius: 10px;
+    --shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+}
+
+.profile-container {
+    max-width: 900px;
+    margin: 24px auto;
+    padding: 0 16px
+}
+
+.profile-card {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start
+}
+
+.profile-header {
+    display: flex;
+    gap: 24px;
+    width: 100%
+}
+
+.profile-photo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 180px
+}
+
+.photo-placeholder {
+    width: 140px;
+    height: 140px;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #fff, #f3f4f6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: var(--primary);
+    border: 1px solid var(--border)
+}
+
+.profile-form {
+    flex: 1
+}
+
+.form-group {
+    margin-bottom: 12px
+}
+
+.form-group.inline {
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #fff
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 12px
+}
+
+.primary-btn {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer
+}
+
+.secondary-btn {
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer
+}
+
+@media(max-width:768px) {
+    .profile-card {
+        flex-direction: column
+    }
+
+    .profile-photo-section {
+        width: 100%;
+        flex-direction: row;
+        align-items: center
+    }
+
+    .photo-placeholder {
+        width: 64px;
+        height: 64px;
+        font-size: 22px
+    }
+
+    .form-actions {
+        justify-content: space-between
+    }
+}

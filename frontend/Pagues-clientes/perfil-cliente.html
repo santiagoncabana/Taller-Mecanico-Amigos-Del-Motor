@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Mi Perfil - Cliente</title>
+    <link rel="stylesheet" href="../../css/cliente-css/dashboard-cliente.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="nav-brand">
+            <div class="nav-logo">⚙🔧</div>
+            <span class="app-name">MecApp</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="./dashboard-cliente.html" class="nav-link">Inicio</a>
+            <a href="./mis-vehiculos.html" class="nav-link">Mis Vehículos</a>
+            <a href="./mis-citas.html" class="nav-link">Mis Citas</a>
+            <a href="./historial.html" class="nav-link">Mi Historial</a>
+            <a href="./perfil-cliente.html" class="nav-link active">Mi Perfil</a>
+        </nav>
+        <div class="nav-user">
+            <span class="user-name">Cliente</span>
+            <div class="user-avatar">C</div>
+        </div>
+    </header>
+
+    <main class="page">
+        <section class="card center-card">
+            <h2 class="h-title">Mi Perfil</h2>
+
+            <!-- Endpoint: GET /api/clientes/dni/{dni}  -->
+            <!-- Save: PUT /clientes/{dni}/editar -->
+
+            <form id="perfil-form">
+                <label class="label" for="nombre">Nombre</label>
+                <input id="nombre" name="nombre" type="text" class="campo-entrada" value="Juan Pérez">
+
+                <label class="label" for="email">Correo</label>
+                <input id="email" name="email" type="email" class="campo-entrada" value="juan.perez@email.com">
+
+                <label class="label" for="dni">DNI</label>
+                <input id="dni" name="dni" type="text" class="campo-entrada" value="12345678">
+
+                <!-- Foto: control para cambiar o eliminar la imagen -->
+                <div style="margin-top:12px;">
+                    <label class="label">Foto de perfil</label>
+                    <input type="file" id="foto" name="foto" accept="image/*" class="campo-entrada">
+                    <div style="margin-top:8px;display:flex;gap:8px;align-items:center;">
+                        <button type="button" class="boton-cancelar">Eliminar foto</button>
+                        <small style="color:var(--muted);">Formatos aceptados: JPG, PNG. Máx 5MB.</small>
+                    </div>
+                </div>
+
+                <div style="margin-top:12px;display:flex;gap:10px;">
+                    <button type="button" class="boton-cancelar">Cancelar</button>
+                    <button type="submit" class="boton-guardar">Guardar Cambios</button>
+                </div>
+            </form>
+
+        </section>
+    </main>
+</body>
+
+</html>

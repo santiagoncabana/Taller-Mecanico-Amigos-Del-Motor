@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard de Orden de Servicio</title>
-    <link rel="stylesheet" href="../css/orden-serv.css">
+    <link rel="stylesheet" href="../../css/encargado-css/Orden_de_servicio.css">
 </head>
+
 <body>
 
     <div class="dashboard-container">
         <h1>Orden de Servicio: #<span id="os-id">...</span></h1>
-        
+
         <div class="component-card" id="componente-identificacion">
             <h2>Identificación (Solo Lectura)</h2>
             <div class="card-content">
@@ -27,10 +29,10 @@
 
                 <label for="id-cliente">ID Cliente:</label>
                 <input type="text" id="id-cliente" placeholder="ID del cliente...">
-                
+
                 <label for="cliente-email">Email:</label>
                 <input type="email" id="cliente-email" placeholder="Email...">
-                
+
                 <button id="btn-guardar-cliente">Guardar Cliente</button>
             </div>
         </div>
@@ -40,13 +42,13 @@
             <div class="card-content form-interactivo">
                 <label for="vehiculo-patente">Patente:</label>
                 <input type="text" id="vehiculo-patente" placeholder="Patente...">
-                
+
                 <label for="vehiculo-marca">Marca:</label>
                 <input type="text" id="vehiculo-marca" placeholder="Marca...">
 
                 <label for="vehiculo-modelo">Modelo:</label>
                 <input type="text" id="vehiculo-modelo" placeholder="Modelo...">
-                
+
                 <button id="btn-guardar-vehiculo">Guardar Vehículo</button>
             </div>
         </div>
@@ -55,7 +57,8 @@
             <h2>Trabajo Solicitado</h2>
             <div class="card-content form-interactivo">
                 <label for="trabajo-solicitado-input">Descripción del problema:</label>
-                <textarea id="trabajo-solicitado-input" rows="4" placeholder="Describa el problema o servicio solicitado..."></textarea>
+                <textarea id="trabajo-solicitado-input" rows="4"
+                    placeholder="Describa el problema o servicio solicitado..."></textarea>
                 <button id="btn-guardar-trabajo">Guardar Descripción</button>
             </div>
         </div>
@@ -83,6 +86,8 @@
             </div>
         </div>
 
-    </div> <script src="app.js"></script>
+    </div>
+    <script src="app.js"></script>
 </body>
+
 </html>

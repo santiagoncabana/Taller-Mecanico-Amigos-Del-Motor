@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Dashboard - Cliente</title>
+    <link rel="stylesheet" href="../../css/cliente-css/dashboard-cliente.css">
+</head>
+
+<body>
+    <!-- Shared header -->
+    <header class="navbar">
+        <div class="nav-brand">
+            <div class="nav-logo">⚙🔧</div>
+            <span class="app-name">MecApp</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="./dashboard-cliente.html" class="nav-link active">Inicio</a>
+            <a href="./mis-vehiculos.html" class="nav-link">Mis Vehículos</a>
+            <a href="./mis-citas.html" class="nav-link">Mis Citas</a>
+            <a href="./historial.html" class="nav-link">Mi Historial</a>
+            <a href="./perfil-cliente.html" class="nav-link">Mi Perfil</a>
+        </nav>
+        <div class="nav-user">
+            <span class="user-name">Cliente</span>
+            <div class="user-avatar">C</div>
+        </div>
+    </header>
+
+    <main class="page">
+        <section class="card">
+            <h2 class="h-title">Bienvenido, Cliente</h2>
+            <p>Resumen rápido de tu cuenta y accesos directos.</p>
+
+            <div class="row" style="margin-top:14px">
+                <div class="card col" style="min-width:220px">
+                    <h3>Próxima Cita</h3>
+                    <!-- placeholder: se cargará desde GET /api/turnos/turnos/buscar/{dni}/todos -->
+                    <div class="placeholder">No hay citas próximas</div>
+                </div>
+                <div class="card col" style="min-width:220px">
+                    <h3>Vehículo Principal</h3>
+                    <!-- placeholder: se cargará desde GET /api/clientes/dni/{dni} -->
+                    <div class="placeholder">Sin vehículo registrado</div>
+                </div>
+            </div>
+
+            <div style="margin-top:14px">
+                <a class="nav-link reservar-cita" href="./nueva-cita.html">Reservar nueva cita</a>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

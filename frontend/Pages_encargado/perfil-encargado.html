@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil del Encargado - MecApp</title>
-    <link rel="stylesheet" href="../css/encargado.css">
-    <link rel="stylesheet" href="../css/style_clien.css">
+    <link rel="stylesheet" href="../../css/encargado-css/dashboard.css">
+    <link rel="stylesheet" href="../../css/encargado-css/perfil-encargado.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
@@ -39,45 +39,43 @@
         </div>
 
         <div class="profile-container">
-            <div class="card">
+            <div class="card profile-card">
                 <div class="profile-header">
                     <div class="profile-photo-section">
                         <div class="photo-placeholder">
                             <i class="fas fa-user"></i>
                         </div>
-                        <button type="button" class="secondary-btn">
-                            <i class="fas fa-camera"></i> Cambiar Foto
-                        </button>
+                        <button type="button" class="secondary-btn">Cambiar Foto</button>
                     </div>
 
-                    <form class="profile-form">
+                    <form id="perfil-encargado-form" class="profile-form">
                         <div class="form-group">
                             <label for="nombre">Nombre Completo</label>
-                            <input type="text" id="nombre" class="form-input" value="Encargado Actual" required>
+                            <input type="text" id="nombre" name="nombre" class="form-input" value="Encargado Actual"
+                                required>
                         </div>
 
                         <div class="form-group">
                             <label for="email">Correo Electrónico</label>
-                            <input type="email" id="email" class="form-input" value="encargado@mecapp.com" required>
+                            <input type="email" id="email" name="email" class="form-input" value="encargado@mecapp.com"
+                                required>
                         </div>
 
                         <div class="form-group">
-                            <label for="password">Contraseña</label>
-                            <div class="password-input">
-                                <input type="password" id="password" class="form-input" value="********" required>
-                                <button type="button" class="password-toggle">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
+                            <label for="password">Contraseña (dejar en blanco para no cambiar)</label>
+                            <input type="password" id="password" name="contrasena" class="form-input"
+                                placeholder="Nueva contraseña">
+                        </div>
+
+                        <div class="form-group inline">
+                            <label for="disponible">Disponible</label>
+                            <input type="checkbox" id="disponible" name="disponible" checked>
                         </div>
 
                         <div class="form-actions">
-                            <button type="submit" class="primary-btn">
-                                <i class="fas fa-save"></i> Guardar Cambios
-                            </button>
-                            <button type="button" class="secondary-btn">
-                                <i class="fas fa-times"></i> Cancelar
-                            </button>
+                            <button type="submit" class="primary-btn"><i class="fas fa-save"></i> Guardar
+                                Cambios</button>
+                            <button type="button" id="cancel-btn" class="secondary-btn">Cancelar</button>
                         </div>
                     </form>
                 </div>
@@ -86,30 +84,50 @@
     </div>
 
     <script>
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const toggleIcon = document.querySelector('.password-toggle i');
+        // Submit handler: intenta enviar PUT a un endpoint de actualización de empleado.
+        // Nota: actualmente no existe un endpoint PUT para editar empleado en el backend.
+        // Si implementás uno, ajustar la URL abajo (por ejemplo: '/api/empleados/{id}' o '/encargado/{id}/editar').
 
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                toggleIcon.className = 'fas fa-eye-slash';
-            } else {
-                passwordInput.type = 'password';
-                toggleIcon.className = 'fas fa-eye';
-            }
-        }
+        const form = document.getElementById('perfil-encargado-form');
+        const cancelBtn = document.getElementById('cancel-btn');
 
-        document.querySelector('.profile-form').addEventListener('submit', function (e) {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            alert('Cambios guardados correctamente');
+            const payload = {
+                nombre: form.nombre.value.trim(),
+                email: form.email.value.trim()
+            };
+            if (form.contrasena && form.contrasena.value.trim() !== '') {
+                payload.contrasena = form.contrasena.value.trim();
+            }
+            payload.disponible = !!form.disponible.checked;
+
+            // URL de ejemplo: cambiar cuando el backend tenga endpoint de actualización de empleado
+            const url = '/api/empleados/mi-perfil';
+
+            try {
+                const res = await fetch(url, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!res.ok) {
+                    const txt = await res.text().catch(() => res.statusText);
+                    throw new Error(`${res.status} ${txt}`);
+                }
+
+                const data = await res.json();
+                alert('Perfil actualizado correctamente');
+                // opcional: actualizar UI con la respuesta
+            } catch (err) {
+                console.error('Error actualizando perfil:', err);
+                alert('No se pudo actualizar el perfil. Ver consola para detalles.');
+            }
         });
 
-        document.querySelector('.secondary-btn').addEventListener('click', function () {
-            if (confirm('¿Estás seguro de que quieres descartar los cambios?')) {
-                document.getElementById('nombre').value = 'Encargado Actual';
-                document.getElementById('email').value = 'encargado@mecapp.com';
-                document.getElementById('password').value = '********';
-            }
+        cancelBtn.addEventListener('click', () => {
+            if (confirm('¿Descartar cambios?')) location.reload();
         });
     </script>
 </body>
