@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Turnos Pendientes</title>
+    <link rel="stylesheet" href="../css/encargado.css">
+    <link rel="stylesheet" href="/MecApp/css/style_citas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+
+    <header class="navbar">
+        <div class="nav-brand">
+            <div class="nav-logo">
+                <div class="nav-gear">⚙</div>
+                <div class="nav-wrench">🔧</div>
+            </div>
+            <span class="app-name">MecApp</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="./dashboard-encargado.html" class="nav-link">Inicio</a>
+            <a href="./clientes.html" class="nav-link">Clientes</a>
+            <a href="./vehiculos.html" class="nav-link">Vehículos</a>
+            <a href="./citas.html" class="nav-link active">Citas</a>
+            <a href="./inventario.html" class="nav-link">Inventario</a>
+        </nav>
+        <div class="nav-user">
+            <span class="user-name">Usuario</span>
+            <div class="user-avatar">U</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-title">
+            <h1><i class="fas fa-calendar-alt"></i> Citas</h1>
+            <div>
+                <button class="primary-btn"><i class="fas fa-plus-circle"></i> Crear Nueva Cita</button>
+            </div>
+        </div>
+
+        <div class="summary-grid">
+            <div class="card">
+                <div class="k">Citas Confirmadas Hoy</div>
+                <div class="v">8</div>
+            </div>
+            <div class="card">
+                <div class="k">Citas Canceladas</div>
+                <div class="v">2</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex; gap:12px; align-items:center; margin-bottom:10px">
+                <strong>Agenda semanal (esqueleto)</strong>
+                <span class="chip">Semana actual</span>
+            </div>
+            <div class="agenda">
+                <div class="slot">
+                    <div>
+                        <div style="font-weight:700">09:00</div>
+                        <div style="color:#6B7280">Juan Pérez — Renault 12</div>
+                    </div>
+                    <div class="badge">Confirmada</div>
+                </div>
+                <div class="slot">
+                    <div>
+                        <div style="font-weight:700">10:30</div>
+                        <div style="color:#6B7280">María G. — Ford Fiesta</div>
+                    </div>
+                    <div class="badge">Confirmada</div>
+                </div>
+                <div class="slot">
+                    <div>
+                        <div style="font-weight:700">14:00</div>
+                        <div style="color:#6B7280">Carlos R. — VW Gol</div>
+                    </div>
+                    <div class="badge" style="background:#F59E0B">Reprogramada</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app_citas.js"></script>
+</body>
+
+</html>

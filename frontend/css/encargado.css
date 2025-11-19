@@ -1,0 +1,338 @@
+:root {
+    --primary: #3B82F6;
+    --muted-border: #E5E7EB;
+    --card-radius: 8px;
+    --bg: #F9FAFB;
+    --text: #111827;
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0
+}
+
+/* Navbar styles copied/adapted from dashboard.css to consolidate header styling */
+.navbar {
+    background: #fff;
+    padding: 0 2rem;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid var(--muted-border);
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px
+}
+
+.nav-logo {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.nav-gear {
+    font-size: 28px;
+    color: var(--primary);
+    position: absolute;
+    z-index: 1
+}
+
+.nav-wrench {
+    font-size: 22px;
+    color: var(--primary);
+    position: absolute;
+    transform: rotate(45deg);
+    z-index: 2
+}
+
+.app-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text)
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem
+}
+
+.nav-menu .nav-link {
+    text-decoration: none;
+    color: rgba(17, 24, 39, 0.6);
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all .3s
+}
+
+.nav-menu .nav-link:hover,
+.nav-menu .nav-link.active {
+    color: var(--primary);
+    background: rgba(59, 130, 246, 0.08)
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 12px
+}
+
+.nav-user .user-name {
+    font-weight: 500
+}
+
+.nav-user .user-avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600
+}
+
+
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 28px;
+    background: #fff;
+    border-bottom: 1px solid var(--muted-border)
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px
+}
+
+.brand .logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700
+}
+
+.brand .title {
+    font-size: 18px;
+    font-weight: 700
+}
+
+.main-nav {
+    display: flex;
+    gap: 18px;
+    align-items: center
+}
+
+.main-nav a {
+    color: rgba(17, 24, 39, 0.8);
+    text-decoration: none;
+    padding: 10px 6px;
+    border-bottom: 3px solid transparent
+}
+
+.main-nav a.activo {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+}
+
+.user-block {
+    display: flex;
+    align-items: center;
+    gap: 12px
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600
+}
+
+.container {
+    max-width: 1100px;
+    margin: 28px auto;
+    padding: 0 18px
+}
+
+.page-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px
+}
+
+.page-title h1 {
+    font-size: 20px;
+    margin: 0;
+    display: flex;
+    gap: 10px;
+    align-items: center
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+    margin-bottom: 18px
+}
+
+.card {
+    background: #fff;
+    border: 1px solid var(--muted-border);
+    border-radius: var(--card-radius);
+    padding: 16px
+}
+
+.card .k {
+    font-size: 13px;
+    color: #6B7280
+}
+
+.card .v {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 6px
+}
+
+.primary-btn {
+    background: var(--primary);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 0;
+    cursor: pointer
+}
+
+.secondary-btn {
+    background: #fff;
+    border: 1px solid var(--muted-border);
+    padding: 8px 12px;
+    border-radius: 8px
+}
+
+/* Table styles */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border: 1px solid var(--muted-border);
+    border-radius: var(--card-radius);
+    overflow: hidden
+}
+
+.table thead {
+    background: #fff
+}
+
+.table th,
+.table td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid #F3F4F6
+}
+
+.table th {
+    font-size: 13px;
+    color: #6B7280
+}
+
+.table tr:last-child td {
+    border-bottom: 0
+}
+
+.actions {
+    display: flex;
+    gap: 8px
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    background: #F3F4F6;
+    border-radius: 999px;
+    font-size: 13px
+}
+
+.grid-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px
+}
+
+.vehicle-card {
+    background: #fff;
+    border: 1px solid var(--muted-border);
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+
+.vehicle-card .plate {
+    font-weight: 700;
+    color: var(--primary)
+}
+
+.agenda {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px
+}
+
+.agenda .slot {
+    background: #fff;
+    border: 1px solid var(--muted-border);
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
+.badge {
+    background: var(--primary);
+    color: #fff;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 13px
+}
+
+@media(min-width:900px) {
+    .agenda {
+        grid-template-columns: repeat(2, 1fr)
+    }
+}

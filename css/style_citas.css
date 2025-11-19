@@ -1,10 +1,95 @@
+:root {
+    --primary-blue: #2563eb;
+    --dark-bg: #1a1a1a;
+    --sidebar-bg: #0f0f0f;
+    --card-bg: #ffffff;
+    --text-dark: #374151;
+    --text-light: #6b7280;
+    --border-color: #d1d5db;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
 /* Estilo base - Gris Claro */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #EFEFEF; /* Fondo gris muy claro */
-    color: #333; /* Texto oscuro */
+    background-color: #EFEFEF;
+    /* Fondo gris muy claro */
+    color: #333;
+    /* Texto oscuro */
     margin: 0;
-    padding: 20px;
+}
+
+/* Navbar */
+.navbar {
+    background: var(--card-bg);
+    padding: 0 2rem;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-brand .logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--primary-blue);
+}
+
+.app-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-blue);
+    background: rgba(37, 99, 235, 0.1);
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-name {
+    font-weight: 500;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-blue);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
 }
 
 /* Contenedor principal */
@@ -12,14 +97,17 @@ body {
     max-width: 1000px;
     margin: 20px auto;
     padding: 30px;
-    background-color: #FFF; /* Fondo blanco/gris claro para el contenedor */
+    background-color: #FFF;
+    /* Fondo blanco/gris claro para el contenedor */
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 7rem;
 }
 
 /* Título - Celeste */
 h1 {
-    color: #00AEEF; /* Color Celeste brillante */
+    color: #00AEEF;
+    /* Color Celeste brillante */
     text-align: center;
     margin-bottom: 40px;
     font-weight: 700;
@@ -42,8 +130,9 @@ h1 i {
     font-size: 1.1em;
     font-weight: 600;
     margin-bottom: 30px;
-    display: block; /* Ocupa todo el ancho del contenedor */
-    width: 100%; 
+    display: block;
+    /* Ocupa todo el ancho del contenedor */
+    width: 100%;
     transition: background-color 0.2s;
 }
 
@@ -64,30 +153,33 @@ h1 i {
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     display: grid;
-    grid-template-areas: 
+    grid-template-areas:
         "status status"
         "details info"
         "actions actions";
     grid-template-columns: 100px 1fr;
-    border-left: 5px solid; /* Usado para indicar el estado */
+    border-left: 5px solid;
+    /* Usado para indicar el estado */
 }
 
 /* Estilo para el estado PENDIENTE (rojo claro/naranja) */
 .appointment-card.pending {
-    border-left-color: #ffc107; 
+    border-left-color: #ffc107;
 }
+
 .appointment-card.pending .card-status {
-    background-color: #fff3cd; 
-    color: #856404; 
+    background-color: #fff3cd;
+    color: #856404;
 }
 
 /* Estilo para el estado PRÓXIMO (azul claro) */
 .appointment-card.upcoming {
     border-left-color: #17a2b8;
 }
+
 .appointment-card.upcoming .card-status {
-    background-color: #e6f7ff; 
-    color: #17a2b8; 
+    background-color: #e6f7ff;
+    color: #17a2b8;
 }
 
 
@@ -100,6 +192,7 @@ h1 i {
     font-size: 0.9em;
     border-bottom: 1px dashed #DDD;
 }
+
 .card-details {
     grid-area: details;
     background-color: #EFEFEF;
@@ -114,6 +207,7 @@ h1 i {
     color: #333;
     margin: 0;
 }
+
 .card-details .date {
     font-size: 0.9em;
     color: #666;
@@ -125,9 +219,11 @@ h1 i {
     padding: 15px;
     font-size: 0.95em;
 }
+
 .card-info p {
     margin: 3px 0;
 }
+
 .card-info .reason {
     font-style: italic;
     color: #999;
@@ -156,21 +252,31 @@ h1 i {
 }
 
 .btn-finalizar {
-    background-color: #28a745; /* Verde */
+    background-color: #28a745;
+    /* Verde */
     color: #fff;
 }
-.btn-finalizar:hover { 
-    background-color: #218838; 
+
+.btn-finalizar:hover {
+    background-color: #218838;
 }
 
 .btn-reschedule {
-    background-color: #ffc107; /* Amarillo */
+    background-color: #ffc107;
+    /* Amarillo */
     color: #333;
 }
-.btn-reschedule:hover { background-color: #e0a800; }
+
+.btn-reschedule:hover {
+    background-color: #e0a800;
+}
 
 .btn-cancel {
-    background-color: #dc3545; /* Rojo */
+    background-color: #dc3545;
+    /* Rojo */
     color: #fff;
 }
-.btn-cancel:hover { background-color: #c82333; }
+
+.btn-cancel:hover {
+    background-color: #c82333;
+}

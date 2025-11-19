@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehículos</title>
+    <link rel="stylesheet" href="../css/encargado.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="nav-brand">
+            <div class="nav-logo">
+                <div class="nav-gear">⚙</div>
+                <div class="nav-wrench">🔧</div>
+            </div>
+            <span class="app-name">MecApp</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="./dashboard-encargado.html" class="nav-link">Inicio</a>
+            <a href="./clientes.html" class="nav-link">Clientes</a>
+            <a href="./vehiculos.html" class="nav-link active">Vehículos</a>
+            <a href="./citas.html" class="nav-link">Citas</a>
+            <a href="./inventario.html" class="nav-link">Inventario</a>
+        </nav>
+        <div class="nav-user">
+            <span class="user-name">Encargado</span>
+            <div class="user-avatar">E</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-title">
+            <h1><i class="fas fa-car-side"></i> Vehículos</h1>
+            <div>
+                <button class="primary-btn"><i class="fas fa-plus-circle"></i> Nuevo Vehículo</button>
+            </div>
+        </div>
+
+        <div class="summary-grid">
+            <div class="card">
+                <div class="k">Vehículos en Taller (Activos)</div>
+                <div class="v">18</div>
+            </div>
+            <div class="card">
+                <div class="k">Próximo Mantenimiento Mayor</div>
+                <div class="v">Ford Ranger — 2025-11-30</div>
+            </div>
+        </div>
+
+        <div class="grid-gallery">
+            <div class="vehicle-card">
+                <div class="plate">AA123ZZ</div>
+                <div class="model">Renault 12</div>
+                <div class="last-order">Última OS: #OS-456 (2025-11-10)</div>
+                <div style="margin-top:auto; display:flex; gap:8px">
+                    <button class="secondary-btn">Ver</button>
+                    <button class="secondary-btn">Orden</button>
+                </div>
+            </div>
+            <div class="vehicle-card">
+                <div class="plate">AF456BC</div>
+                <div class="model">Ford Ranger</div>
+                <div class="last-order">Última OS: #OS-789 (2025-11-05)</div>
+                <div style="margin-top:auto; display:flex; gap:8px">
+                    <button class="secondary-btn">Ver</button>
+                    <button class="secondary-btn">Orden</button>
+                </div>
+            </div>
+            <div class="vehicle-card">
+                <div class="plate">AB987XY</div>
+                <div class="model">Mercedes C350</div>
+                <div class="last-order">Última OS: #OS-123 (2025-10-20)</div>
+                <div style="margin-top:auto; display:flex; gap:8px">
+                    <button class="secondary-btn">Ver</button>
+                    <button class="secondary-btn">Orden</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
