@@ -31,15 +31,7 @@ h2 {
     padding: 6px 20px;
 }
 
-:root {
-    --primary: #3B82F6;
-    --bg: #F9FAFB;
-    --card: #fff;
-    --text: #111827;
-    --muted: #6B7280;
-    --border: #E5E7EB;
-    --shadow: 0 8px 20px rgba(16, 24, 40, 0.06);
-}
+
 
 body {
     margin: 0;
