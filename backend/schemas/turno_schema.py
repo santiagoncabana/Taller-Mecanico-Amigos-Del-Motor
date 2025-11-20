@@ -4,6 +4,34 @@ from datetime import date, time
 from database.models import Cliente, Turno
 from typing import Optional
 
+
+
+
+
+class ClienteBasico(BaseModel):
+    id: int
+    nombre: str
+    telefono: str | None = None
+    DNI: str | None = None
+    
+    class Config:
+        from_attributes = True
+
+class EmpleadoBasico(BaseModel):
+    id: int
+    nombre: str
+    
+    class Config:
+        from_attributes = True
+
+
+
+
+
+
+# -------------------------------------------------------
+
+
 class TurnoCreate(BaseModel):
     # Datos del Cliente
     telefono: str
@@ -13,6 +41,10 @@ class TurnoCreate(BaseModel):
     fecha: str  
     hora: str   
     estado: str = "Pendiente"
+    
+ # ------------------------------------------------------------
+
+
     
 class OrdenResponse(BaseModel):
     id: int
@@ -33,7 +65,7 @@ class OrdenResponse(BaseModel):
     class Config:
         from_attributes = True
 
-
+# -------------------------------------------------------------------
 class TurnoResponse(BaseModel):
     id: int
     cliente_id: int
@@ -42,10 +74,23 @@ class TurnoResponse(BaseModel):
     hora: str
     estado: str
     orden_servicio: Optional[OrdenResponse] = None
-
+    cliente: Optional[ClienteBasico] = None       # Agregar
+    empleado: Optional[EmpleadoBasico] = None
     class Config:
         from_attributes = True
-        
+
+
+# --------------------------------------------------------------
+
+
+class DashboardStats(BaseModel):
+    citas_hoy: int
+    clientes_activos: int
+    vehiculos_en_taller: int
+    ingresos_mensuales: int
+
+
+# ------------------------------------------------------------------
 
 class TurnoUpdate(BaseModel):
     estado: str = "Finalizado"
@@ -58,7 +103,8 @@ class orden_de_servicio_create(BaseModel):
     modelo: str
     marca: str
     anio : int
-    
+
+# ------------------------------------------------------
 class OrdenCreate(BaseModel):
     turno_id: int
     descripcion_trabajo: str
@@ -67,4 +113,8 @@ class OrdenCreate(BaseModel):
     modelo: str
     marca: str
     anio: int
+
+
+
+# -------------------------------------------------------------------
 

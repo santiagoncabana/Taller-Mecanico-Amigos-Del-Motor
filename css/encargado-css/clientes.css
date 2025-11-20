@@ -1,14 +1,115 @@
-/* clientes.css - Estilos para la vista de Gestión de Clientes (Encargado) */
-
-:root {
-    --primary: #2563eb;
-    --muted: #6b7280;
-    --card-bg: #ffffff;
-    --border: #e5e7eb;
-    --radius: 10px;
-    --shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+/* -------------------- VARIABLES GLOBALES -------------------- */
+:root {
+    --primary: #2563eb;
+    --primary-light: #bfdbfe;
+    --text-dark: #0f172a;
+    --text-light: #6b7280;
+    --card-bg: #ffffff;
+    --border: #e5e7eb;
+    --border-color: var(--border);
+    --radius: 10px;
+    --shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+    --danger: #ef4444;
+}
+
+/* -------------------- NAVBAR -------------------- */
+.navbar {
+    background: var(--card-bg);
+    padding: 0 2rem;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-logo {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-gear {
+    font-size: 28px;
+    color: var(--primary);
+}
+
+.app-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--primary);
+    background: rgba(37, 99, 235, 0.1);
+}
+
+.nav-link.active {
+    color: var(--primary);
+    background: rgba(37, 99, 235, 0.1);
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-name {
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+/* -------------------- CONTENEDOR PRINCIPAL -------------------- */
 .container {
     max-width: 1100px;
     margin: 1.5rem auto;
@@ -19,80 +120,235 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem
+    margin-bottom: 1rem;
 }
 
 .page-title h1 {
     font-size: 1.6rem;
-    color: #0f172a
+    color: var(--text-dark);
 }
 
 .card {
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 1rem;
+    padding: 1.5rem;
     box-shadow: var(--shadow);
 }
 
-.summary-grid {
+/* -------------------- TABLA -------------------- */
+.table-container {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.table th,
+.table td {
+    text-align: left;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.table thead tr {
+    background: #f8fafc;
+    border-top: 1px solid var(--border);
+}
+
+.table th {
+    font-weight: 700;
+    color: var(--text-light);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.table td {
+    color: var(--text-dark);
+}
+
+/* Ajuste de anchos de columna */
+.table th:first-child,
+.table td:first-child {
+    width: 80px;
+}
+
+.table th:nth-child(2),
+.table td:nth-child(2) {
+    width: 200px;
+}
+
+.table th:nth-child(3),
+.table td:nth-child(3) {
+    width: 250px;
+}
+
+.table th:last-child,
+.table td:last-child {
+    width: 100px;
+    text-align: center;
+}
+
+/* -------------------- BOTONES -------------------- */
+.view-btn {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.view-btn:hover {
+    background-color: #2563eb;
+}
+
+/* -------------------- MODAL -------------------- */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
     display: flex;
-    gap: 1rem;
+}
+
+.modal-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-dialog {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    position: relative;
+    z-index: 1001;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-light);
+    line-height: 1;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.modal-close:hover {
+    background: #f3f4f6;
+    color: var(--text-dark);
+}
+
+.modal-content h3 {
+    color: var(--primary);
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
     margin-bottom: 1rem;
 }
 
-.summary-grid .card {
-    flex: 1
+.client-detail p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: var(--text-dark);
 }
 
-/* Tabla simple de clientes */
-.clients-list {
-    margin-top: 0.75rem
+.client-detail strong {
+    font-weight: 600;
+    width: 100px;
+    display: inline-block;
 }
 
-.clients-list table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.95rem
+.vehicles-list h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+    font-size: 1.1rem;
 }
 
-.clients-list th,
-.clients-list td {
-    text-align: left;
-    padding: 8px 6px;
-    border-bottom: 1px solid #f1f5f9
-}
-
-.clients-list th {
-    font-weight: 700;
-    color: var(--muted)
-}
-
-.clients-list tr:hover td {
-    background: #fbfdff
-}
-
-.actions button {
-    margin-right: 6px;
-    padding: 4px 8px;
-    border-radius: 6px;
+.vehicle-card {
     border: 1px solid var(--border);
-    background: transparent;
-    cursor: pointer
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: #fcfdfe;
 }
 
-.actions .edit {
-    background: #f8fafc
+.vehicle-card p {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
 }
 
-@media(max-width:768px) {
+.vehicle-card .placa {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+/* -------------------- RESPONSIVE -------------------- */
+@media(max-width: 768px) {
+    .navbar {
+        padding: 0 1rem;
+    }
+
+    .nav-menu {
+        gap: 1rem;
+    }
+
+    .nav-link {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+
     .page-title {
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px
+        gap: 8px;
     }
 
-    .clients-list table {
-        font-size: 0.9rem
+    .table {
+        font-size: 0.85rem;
+    }
+
+    .table th,
+    .table td {
+        padding: 10px 8px;
     }
 }

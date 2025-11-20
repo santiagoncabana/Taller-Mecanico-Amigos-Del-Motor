@@ -5,7 +5,8 @@ from sqlalchemy.orm import sessionmaker, Session
 from database import models
 import importlib
 
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:Angel4660@localhost:5432/MecApp"
+SQLALCHEMY_DATABASE_URL = "postgresql://postgres:1234@localhost:5432/mecapp"
+# SQLALCHEMY_DATABASE_URL= "postgresql+psycopg2://postgres:postgres@localhost:5432/mecapp"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

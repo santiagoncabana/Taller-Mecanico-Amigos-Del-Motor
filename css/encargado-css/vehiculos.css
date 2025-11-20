@@ -1,81 +1,277 @@
-/* vehiculos.css - Estilos para la vista de Vehículos (Encargado) */
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
 
-:root {
-    --primary: #2563eb;
-    --muted: #6b7280;
-    --card-bg: #ffffff;
-    --border: #e5e7eb;
-    --radius: 10px;
-    --shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
-}
+ body {
+     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+     background: #f8fafc;
+     color: #0f172a;
+ }
 
-.container {
-    max-width: 1100px;
-    margin: 1.5rem auto;
-    padding: 0 1rem;
-}
+ /* -------------------- VARIABLES GLOBALES -------------------- */
+ :root {
+     --primary: #2563eb;
+     --primary-light: #bfdbfe;
+     --text-dark: #0f172a;
+     --text-light: #6b7280;
+     --card-bg: #ffffff;
+     --border: #e5e7eb;
+     --border-color: var(--border);
+     --radius: 10px;
+     --shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+     --danger: #ef4444;
+ }
 
-.page-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem
-}
+ /* -------------------- NAVBAR -------------------- */
+ .navbar {
+     background: var(--card-bg);
+     padding: 0 2rem;
+     height: 70px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     box-shadow: var(--shadow);
+     border-bottom: 1px solid var(--border-color);
+ }
 
-.page-title h1 {
-    font-size: 1.6rem;
-    color: #0f172a
-}
+ .nav-brand {
+     display: flex;
+     align-items: center;
+     gap: 12px;
+ }
 
-.grid-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1rem
-}
+ .nav-logo {
+     position: relative;
+     width: 35px;
+     height: 35px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
 
-.vehicle-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    padding: 1rem;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    display: flex;
-    flex-direction: column;
-    gap: 8px
-}
+ .nav-gear {
+     font-size: 28px;
+     color: var(--primary);
+ }
 
-.vehicle-card .plate {
-    font-weight: 700;
-    color: var(--primary)
-}
+ .app-name {
+     font-size: 20px;
+     font-weight: 600;
+     color: var(--text-dark);
+ }
 
-.vehicle-card .model {
-    color: var(--muted)
-}
+ .nav-menu {
+     display: flex;
+     gap: 2rem;
+ }
 
-.vehicle-card .last-order {
-    font-size: 0.9rem;
-    color: #374151
-}
+ .nav-link {
+     text-decoration: none;
+     color: var(--text-light);
+     font-weight: 500;
+     padding: 8px 16px;
+     border-radius: 6px;
+     transition: all 0.3s ease;
+ }
 
-.primary-btn {
-    background: var(--primary);
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 8px;
-    cursor: pointer
-}
+ .nav-link:hover {
+     color: var(--primary);
+     background: rgba(37, 99, 235, 0.1);
+ }
 
-.secondary-btn {
-    background: #f3f4f6;
-    border: 1px solid var(--border);
-    padding: 6px 10px;
-    border-radius: 8px
-}
+ .nav-link.active {
+     color: var(--primary);
+     background: rgba(37, 99, 235, 0.1);
+ }
 
-@media(max-width:768px) {
-    .grid-gallery {
-        grid-template-columns: 1fr
-    }
-}
+ .nav-user {
+     display: flex;
+     align-items: center;
+     gap: 12px;
+ }
+
+ .user-name {
+     font-weight: 500;
+     color: var(--text-dark);
+ }
+
+ .user-avatar {
+     width: 40px;
+     height: 40px;
+     background: var(--primary);
+     color: white;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-weight: 600;
+ }
+
+ /* -------------------- CONTENEDOR PRINCIPAL -------------------- */
+ .container {
+     max-width: 1200px;
+     margin: 2rem auto;
+     padding: 0 1rem;
+ }
+
+ .page-header {
+     display: flex;
+     align-items: center;
+     gap: 12px;
+     margin-bottom: 2rem;
+ }
+
+ .page-header h1 {
+     font-size: 1.8rem;
+     color: var(--text-dark);
+     display: flex;
+     align-items: center;
+     gap: 10px;
+ }
+
+ /* -------------------- GRID DE VEHÍCULOS -------------------- */
+ .vehicles-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+     gap: 1.5rem;
+     margin-top: 1.5rem;
+ }
+
+ .vehicle-card {
+     background: var(--card-bg);
+     border: 1px solid var(--border);
+     border-radius: var(--radius);
+     padding: 1.5rem;
+     box-shadow: var(--shadow);
+     transition: transform 0.2s ease, box-shadow 0.2s ease;
+ }
+
+ .vehicle-card:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 8px 24px rgba(16, 24, 40, 0.1);
+ }
+
+ .vehicle-info {
+     display: flex;
+     flex-direction: column;
+     gap: 0.75rem;
+ }
+
+ .vehicle-info-row {
+     display: flex;
+     align-items: flex-start;
+     gap: 8px;
+ }
+
+ .vehicle-info-row strong {
+     font-weight: 600;
+     color: var(--text-light);
+     min-width: 90px;
+     font-size: 0.9rem;
+ }
+
+ .vehicle-info-row span {
+     color: var(--text-dark);
+     font-size: 0.95rem;
+ }
+
+ .vehicle-patente {
+     font-weight: 700 !important;
+     color: var(--primary) !important;
+     font-size: 1.1rem !important;
+ }
+
+ .vehicle-cliente {
+     margin-top: 0.5rem;
+     padding-top: 0.75rem;
+     border-top: 1px solid var(--border);
+ }
+
+ .vehicle-cliente strong {
+     color: var(--text-light);
+ }
+
+ .vehicle-cliente span {
+     color: var(--primary);
+     font-weight: 500;
+ }
+
+ /* -------------------- ESTADOS -------------------- */
+ .loading-container,
+ .error-container,
+ .empty-container {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     padding: 3rem;
+     text-align: center;
+     background: var(--card-bg);
+     border: 1px solid var(--border);
+     border-radius: var(--radius);
+     box-shadow: var(--shadow);
+ }
+
+ .loading-container {
+     color: var(--text-light);
+ }
+
+ .loading-spinner {
+     width: 40px;
+     height: 40px;
+     border: 3px solid var(--border);
+     border-top-color: var(--primary);
+     border-radius: 50%;
+     animation: spin 0.8s linear infinite;
+     margin-bottom: 1rem;
+ }
+
+ @keyframes spin {
+     to {
+         transform: rotate(360deg);
+     }
+ }
+
+ .error-container {
+     color: var(--danger);
+ }
+
+ .error-icon {
+     font-size: 3rem;
+     margin-bottom: 1rem;
+ }
+
+ .empty-container {
+     color: var(--text-light);
+ }
+
+ .empty-icon {
+     font-size: 3rem;
+     margin-bottom: 1rem;
+ }
+
+ /* -------------------- RESPONSIVE -------------------- */
+ @media(max-width: 768px) {
+     .navbar {
+         padding: 0 1rem;
+     }
+
+     .nav-menu {
+         gap: 1rem;
+     }
+
+     .nav-link {
+         padding: 8px 10px;
+         font-size: 0.9rem;
+     }
+
+     .vehicles-grid {
+         grid-template-columns: 1fr;
+     }
+
+     .page-header h1 {
+         font-size: 1.5rem;
+     }
+ }

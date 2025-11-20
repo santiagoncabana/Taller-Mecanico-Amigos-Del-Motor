@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Empleado - MecApp</title>
+    <link rel="stylesheet" href="/MecApp/css/encargado-css/register-encargado.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="card-container">
+        <form class="register-form" action="/register-empleado" method="post">
+            <h2 class="app-title">MecApp</h2>
+
+            <input type="text" name="nombre" placeholder="Nombre completo" required>
+            <input type="email" name="email" placeholder="Correo electrónico" required>
+            <input type="password" name="contrasena" placeholder="Contraseña" required>
+
+            <input type="hidden" name="rol" value="empleado">
+
+            <div class="terms-checkbox">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">Acepto los <a href="#">términos y condiciones</a></label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Crear Cuenta</button>
+
+            <div class="divider">
+                <hr>
+                <span>o</span>
+                <hr>
+            </div>
+
+            <button type="button" class="btn btn-social btn-google">
+                <i class="fab fa-google"></i> Registrarse con Google
+            </button>
+
+            <button type="button" class="btn btn-social btn-facebook">
+                <i class="fab fa-facebook-f"></i> Registrarse con Facebook
+            </button>
+
+            <p class="login-link">¿Ya tienes una cuenta? <a href="#">Inicia Sesión</a></p>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -43,11 +43,11 @@ def obtener_cliente_por_dni_endpoint(dni: str, db: Session = Depends(get_db)):
         ]
     }
     
-    #Agregar mensaje si no tiene teléfono
+    #si no tiene teléfono
     if not cliente.telefono:
         response["advertencia"] = "Este cliente aún no registró su número de teléfono"
         
-    # Agregar mensaje si no tiene vehículos
+    # si no tiene vehículos
     if not cliente.vehiculos:
         response["advertencia_vehiculos"] = "Este cliente aún no tiene vehículos registrados"
     return response

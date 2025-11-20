@@ -67,10 +67,10 @@ if (form) {
 
         if (userType == 'cliente') {
             endpointURL = 'http://127.0.0.1:8000/login';
-            redirectURL = '/MecApp/frontend/formulario.html';
+            redirectURL = '/MecApp/frontend/Pagues-clientes/dashboard-cliente.html';
         } else if (userType == 'encargado') {
             endpointURL = 'http://127.0.0.1:8000/encargado/login';
-            redirectURL = '/MecApp/frontend/dashboard-encargado.html';
+            redirectURL = '/MecApp/frontend/Pages_encargado/dashboard-encargado.html';
         }
 
         const loginData = {

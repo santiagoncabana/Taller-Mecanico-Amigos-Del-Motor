@@ -121,13 +121,12 @@ body {
 
 /* Contenedor Principal (centra la tarjeta en la página) */
 .contenedor-principal {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 32px 16px;
-    box-sizing: border-box;
-    background: transparent;
 }
 
 /* Layout and form styles for perfilcliente.html (new class names) */

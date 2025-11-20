@@ -4,84 +4,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Turnos Pendientes</title>
-    <link rel="stylesheet" href="../../css/encargado-css/dashboard.css">
-    <link rel="stylesheet" href="../../css/encargado-css/style_citas.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>MecApp - Citas</title>
+    <link rel="stylesheet" href="/MecApp/css/encargado-css/style_citas.css">
 </head>
 
 <body>
-
-
-    <header class="navbar">
+    <!-- NAVBAR -->
+    <nav class="navbar">
         <div class="nav-brand">
             <div class="nav-logo">
-                <div class="nav-gear">⚙</div>
-                <div class="nav-wrench">🔧</div>
+                <span class="nav-gear">⚙️</span>
             </div>
             <span class="app-name">MecApp</span>
         </div>
-        <nav class="nav-menu">
+        <div class="nav-menu">
             <a href="./dashboard-encargado.html" class="nav-link">Inicio</a>
             <a href="./clientes.html" class="nav-link">Clientes</a>
             <a href="./vehiculos.html" class="nav-link">Vehículos</a>
             <a href="./citas.html" class="nav-link active">Citas</a>
-            <a href="./inventario.html" class="nav-link">Inventario</a>
-        </nav>
+            <a href="./encargado.html" class="nav-link">Encargado</a>
+        </div>
         <div class="nav-user">
-            <span class="user-name">Usuario</span>
-            <div class="user-avatar">U</div>
+            <span class="user-name">Encargado</span>
+            <div class="user-avatar">E</div>
         </div>
-    </header>
+    </nav>
 
+    <!-- CONTENIDO PRINCIPAL -->
     <div class="container">
-        <div class="page-title">
-            <h1><i class="fas fa-calendar-alt"></i> Citas</h1>
-        </div>
-
-        <div class="summary-grid">
-            <div class="card">
-                <div class="k">Citas Confirmadas Hoy</div>
-                <div class="v">8</div>
+        <!-- HEADER CON ESTADÍSTICAS -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-label">Citas Confirmadas Hoy:</span>
+                <span class="stat-value" id="citas-confirmadas">0</span>
             </div>
-            <div class="card">
-                <div class="k">Citas Canceladas</div>
-                <div class="v">2</div>
+            <div class="stat-item">
+                <span class="stat-label">Citas Canceladas:</span>
+                <span class="stat-value" id="citas-canceladas">0</span>
             </div>
         </div>
 
-        <div class="card">
-            <div style="display:flex; gap:12px; align-items:center; margin-bottom:10px">
-                <strong>Agenda semanal (esqueleto)</strong>
-                <span class="chip">Semana actual</span>
+        <!-- FILTROS -->
+        <div class="filters-section">
+            <span class="filter-label">Filtrar por estado:</span>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-estado="todos">Todos</button>
+                <button class="filter-btn" data-estado="pendiente">Pendiente</button>
+                <button class="filter-btn" data-estado="en_curso">En Curso</button>
+                <button class="filter-btn" data-estado="finalizado">Finalizado</button>
             </div>
-            <div class="agenda">
-                <div class="slot">
-                    <div>
-                        <div style="font-weight:700">09:00</div>
-                        <div style="color:#6B7280">Juan Pérez — Renault 12</div>
+        </div>
+
+        <!-- TÍTULO DE SECCIÓN -->
+
+        <!-- GRID DE CITAS -->
+        <div id="appointments-container" class="appointments-grid">
+            <!-- Loading state -->
+            <div class="loading-container">
+                <div class="loading-spinner"></div>
+                <p>Cargando citas...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL EDITAR TURNO -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-dialog">
+            <button class="modal-close" id="edit-modal-close">×</button>
+            <div class="modal-content">
+                <h3>Editar Turno</h3>
+                <form id="edit-form">
+                    <input type="hidden" id="edit-turno-dni">
+
+                    <div class="form-group">
+                        <label>Fecha</label>
+                        <input type="date" id="edit-fecha" required>
                     </div>
-                    <div class="badge">Confirmada</div>
-                </div>
-                <div class="slot">
-                    <div>
-                        <div style="font-weight:700">10:30</div>
-                        <div style="color:#6B7280">María G. — Ford Fiesta</div>
+
+                    <div class="form-group">
+                        <label>Hora</label>
+                        <input type="time" id="edit-hora" required>
                     </div>
-                    <div class="badge">Confirmada</div>
-                </div>
-                <div class="slot">
-                    <div>
-                        <div style="font-weight:700">14:00</div>
-                        <div style="color:#6B7280">Carlos R. — VW Gol</div>
+
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <input type="tel" id="edit-telefono" maxlength="20">
                     </div>
-                    <div class="badge" style="background:#F59E0B">Reprogramada</div>
+
+                    <div class="form-group">
+                        <label>DNI</label>
+                        <input type="text" id="edit-dni" maxlength="20">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Estado</label>
+                        <select id="edit-estado" required>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="en_curso">En Curso</option>
+                            <option value="finalizado">Finalizado</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" id="cancel-edit">Cancelar</button>
+                        <button type="submit" class="btn-primary">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CREAR ORDEN DE SERVICIO -->
+    <div id="orden-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-dialog">
+            <button class="modal-close" id="orden-modal-close">×</button>
+            <div class="modal-content">
+                <h3>Crear Orden de Servicio</h3>
+                <form id="orden-form">
+                    <input type="hidden" id="orden-turno-id">
+
+                    <div class="form-group">
+                        <label>Descripción del Trabajo *</label>
+                        <textarea id="orden-descripcion" rows="4" required
+                            placeholder="Describe el trabajo realizado..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Precio Total *</label>
+                        <input type="number" id="orden-precio" step="0.01" min="0" required placeholder="0.00">
+                    </div>
+
+                    <div class="info-readonly">
+                        <p><strong>Turno ID:</strong> <span id="orden-turno-display"></span></p>
+                        <p><strong>Cliente:</strong> <span id="orden-cliente-display"></span></p>
+                        <p><strong>Vehículo:</strong> <span id="orden-vehiculo-display"></span></p>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" id="cancel-orden">Cancelar</button>
+                        <button type="submit" class="btn-primary">Crear Orden</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CONFIRMACIÓN ELIMINAR -->
+    <div id="delete-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-dialog modal-small">
+            <button class="modal-close" id="delete-modal-close">×</button>
+            <div class="modal-content">
+                <h3>⚠️ Confirmar Eliminación</h3>
+                <p>¿Estás seguro de que deseas eliminar este turno?</p>
+                <p class="warning-text">Esta acción no se puede deshacer.</p>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="cancel-delete">Cancelar</button>
+                    <button type="button" class="btn-danger" id="confirm-delete">Eliminar</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="app_citas.js"></script>
+
+    <div id="ver-orden-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-dialog modal-small">
+            <button class="modal-close" id="ver-orden-modal-close">×</button>
+            <div class="modal-content">
+                <h3>📋 Detalle de Orden</h3>
+                <p><strong>Orden #:</strong> <span id="detalle-orden-id"></span></p>
+                <p><strong>Cliente:</strong> <span id="detalle-cliente"></span></p>
+                <p><strong>Vehículo:</strong> <span id="detalle-vehiculo"></span></p>
+                <p><strong>Patente:</strong> <span id="detalle-patente"></span></p>
+                <p><strong>Descripción:</strong> <span id="detalle-descripcion"></span></p>
+                <p><strong>Precio Total:</strong> $<span id="detalle-precio"></span></p>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="cerrar-ver-orden">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/MecApp/js/citas.js"></script>
 </body>
 
 </html>

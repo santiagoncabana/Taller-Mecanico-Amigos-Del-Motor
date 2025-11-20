@@ -18,7 +18,7 @@ router = APIRouter()
 
 @router.post("/register")
 def register(
-    DNI: int = Form(...),
+    DNI: str = Form(...),
     nombre: str = Form(...),
     email: str = Form(...),
     contrasena: str = Form(...),

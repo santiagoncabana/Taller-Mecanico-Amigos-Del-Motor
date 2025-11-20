@@ -14,6 +14,17 @@
     --text-light: #6b7280;
     --border-color: #d1d5db;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --primary-blue: #3b82f6;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --border-color: #e5e7eb;
+    --card-bg: white;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+    /* Colores de estado */
+    --color-pendiente: #f59e0b;
+    /* Naranja */
+    --color-curso: #22c55e;
 }
 
 body {
@@ -94,6 +105,8 @@ body {
     font-weight: 600;
 }
 
+/* -------------------------------------------------------------------------- */
+
 /* Dashboard Main */
 .dashboard {
     padding: 2rem;
@@ -150,42 +163,142 @@ body {
     color: var(--text-dark);
 }
 
+/* ----------------------------------- */
 /* Pending Section */
+/* -------------------- 1. CONTENEDOR DE SECCIÓN PENDIENTE -------------------- */
+
 .pending-section {
     background: var(--card-bg);
     padding: 1.5rem;
     border-radius: 12px;
     box-shadow: var(--shadow);
+    margin-top: 30px;
+    /* Para separarlo de las stats */
 }
 
 .pending-section h2 {
     margin-bottom: 1rem;
     color: var(--text-dark);
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
 }
 
 /* Appointments Styles */
-.appointment-item {
+/* -------------------- 2. LISTA Y TARJETA (LA NUEVA ESTRUCTURA) -------------------- */
+
+/* Contenedor general de la lista de citas */
+.appointments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* Espacio entre cada tarjeta */
+}
+
+.appointment-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding: 15px;
     border: 1px solid var(--border-color);
+    border-left: 5px solid var(--color-pendiente);
+    /* Borde de estado por defecto */
     border-radius: 8px;
-    margin-bottom: 0.5rem;
     background: #f8fafc;
+    transition: all 0.2s ease;
 }
 
+.appointment-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+/* 
 .appointment-info {
     flex: 1;
+} */
+
+/* -------------------- 3. DETALLES DE LA CITA (CARD-DETAILS) -------------------- */
+
+.card-details {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    /* Ocupa el espacio restante */
+    margin-right: 15px;
+    line-height: 1.4;
 }
 
-.appointment-details {
+/* Estilos de los detalles */
+.card-details span {
+    display: block;
+    /* Asegura que cada elemento tome su propia línea o espacio */
+}
+
+.turno_id,
+.cliente_id_info,
+.empleado_id_info {
+    font-size: 0.8rem;
     color: var(--text-light);
-    font-size: 0.9rem;
-    margin-top: 0.25rem;
 }
 
-.btn-primary {
+/* Estilo para destacar la fecha y hora */
+.fecha-info,
+.hora-info {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    display: inline-block;
+    /* Permite que la fecha y la hora estén en la misma línea */
+    margin-right: 5px;
+}
+
+/* Estilo para el estado */
+.estado-info {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+    background-color: var(--color-pendiente);
+    padding: 2px 6px;
+    border-radius: 4px;
+    width: fit-content;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+/* Estilo para destacar la fecha y hora */
+.fecha-info,
+.hora-info {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    display: inline-block;
+    /* Permite que la fecha y la hora estén en la misma línea */
+    margin-right: 5px;
+}
+
+/* Estilo para el estado */
+.estado-info {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+    background-color: var(--color-pendiente);
+    padding: 2px 6px;
+    border-radius: 4px;
+    width: fit-content;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+
+
+/* -------------------- 4. BOTONES (CARD-ACTIONS) -------------------- */
+
+.card-actions {
+    flex-shrink: 0;
+}
+
+.action-btn {
     background: var(--primary-blue);
     color: white;
     border: none;
@@ -194,14 +307,50 @@ body {
     cursor: pointer;
     font-weight: 500;
     transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    width: fit-content;
 }
 
-.btn-primary:hover {
+.action-btn:hover {
     background: #1d4ed8;
 }
 
+.action-btn i {
+    margin-right: 8px;
+    font-size: 0.9rem;
+}
+
+.editar-btn {
+    background: #10b981;
+    /* Verde */
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s ease;
+    align-items: center;
+    margin-top: 15px;
+    width: fit-content;
+}
+
+/* --- ESTILOS DINÁMICOS (si el JS maneja colores según el estado) --- */
+
+/* Si el estado es "EN CURSO" */
+.appointment-card.status-en-curso {
+    border-left-color: var(--color-curso);
+}
+
+.appointment-card.status-en-curso .estado-info {
+    background-color: var(--color-curso);
+}
+
 /* Responsive */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .navbar {
         padding: 0 1rem;
     }
@@ -232,7 +381,7 @@ body {
     .btn-primary {
         width: 100%;
     }
-}
+} */
 
 /* Navbar Logo */
 .nav-logo {

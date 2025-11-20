@@ -11,6 +11,7 @@ from MecApp.backend.routers import vistaEncargado_router
 from MecApp.backend.routers import Orden_de_servicio_router
 
 
+
 create_db_tables()
 
 app = FastAPI()
@@ -24,7 +25,9 @@ origins = [
     "http://127.0.0.1:5500",
     "http://localhost:5500",
     "http://127.0.0.1:8000",  # ← AGREGAR
-    "http://localhost:8000",   # ← AGREGAR
+    "http://localhost:8000",
+    "http://127.0.0.1:8001",  # ← AGREGAR
+    "http://localhost:8001"   # ← AGREGAR
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -39,4 +42,5 @@ app.include_router(turno_router.router)
 app.include_router(Orden_de_servicio_router.router)
 
 app.include_router(vistaEncargado_router.router)
+
 Base.metadata.create_all(bind=engine)

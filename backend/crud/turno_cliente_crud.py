@@ -1,8 +1,9 @@
 from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import and_
-from ..database.models import Turno, Empleado
+from ..database.models import OrdenDeServicio, Turno, Empleado
 from ..schemas.turno_schema import TurnoCreate
 from sqlalchemy import func
+from datetime import datetime,date
 
 
 def hay_espacio_disponible(db: Session, fecha: str, hora: str):
@@ -14,6 +15,10 @@ from sqlalchemy.orm import Session
 from MecApp.backend.database.models import Turno, Empleado, Cliente
 from MecApp.backend.schemas.turno_schema import TurnoCreate
 
+
+
+
+# -----------------------------------------------------------------------------------
 def conseguir_empleado_disponible(db: Session, fecha: str, hora: str) -> Empleado | None:
     #Subconsulta: IDs de empleados que ya tienen turno en esa fecha y hora
     empleados_ocupados = (
@@ -35,6 +40,13 @@ def conseguir_empleado_disponible(db: Session, fecha: str, hora: str) -> Emplead
 
     return empleado
 
+
+
+
+
+
+
+# ----------------------------------------------------------------------
 def create_turno(db: Session, turno: TurnoCreate):
     #Buscar cliente por DNI
     cliente = db.query(Cliente).filter(Cliente.DNI == turno.DNI).first()
@@ -64,6 +76,10 @@ def create_turno(db: Session, turno: TurnoCreate):
     db.refresh(new_turno)
     return new_turno
 
+
+
+
+# -----------------------------------------------------------------------
 def update_turno_estado(db: Session, turno_id: int, nuevo_estado: str):
     turno = db.query(Turno).filter(Turno.id == turno_id).first()
     
@@ -75,6 +91,10 @@ def update_turno_estado(db: Session, turno_id: int, nuevo_estado: str):
     return None
 
 
+
+
+
+# -------------------------------------------------------------------
 def confirmar_llegada_turno(db: Session, turno_id: int):
     #Buscar el turno
     turno = db.query(Turno).filter(Turno.id == turno_id).first()
@@ -84,17 +104,97 @@ def confirmar_llegada_turno(db: Session, turno_id: int):
     
     #Validar que el turno esté pendiente
     if turno.estado == "pendiente":
+        # Cambiar estado a 'En curso', guardar en DB y devolver el turno
         turno.estado = "En curso"
+        db.commit()
+        db.refresh(turno)
+        return turno
     
-    db.commit()
-    db.refresh(turno)
     
+    
+    # Si llegamos aquí, no hubo cambios válidos
     return turno
 
 
+
+
+
+# --------------------------------------------------------------
 #Otras CRUD funciones
 def get_turnos(db: Session):
-    return db.query(Turno).all()
+    return (
+        db.query(Turno)
+        .options(
+            joinedload(Turno.orden_servicio),
+            joinedload(Turno.cliente),
+            joinedload(Turno.empleado)
+        )
+        .all()
+    )
+
+# -----------------------------------------------------------------
+
+def get_turnos_pendientes(db: Session):
+    """
+    Obtiene solo los turnos que están en estado "Pendiente".
+    Se utiliza para el endpoint /pendientes del dashboard.
+    """
+    # Consulta: SELECT * FROM turnos WHERE estado = 'Pendiente'
+    return db.query(Turno).filter(Turno.estado == "pendiente").all()
+
+# --------------------------------------------------------------------------------
+
+
+
+
+def get_dashboard_stats(db: Session):
+    # Realiza las consultas de conteo y suma necesarias para el dashboard.
+    hoy = datetime.now().date()
+    fecha_hoy_str = datetime.now().strftime("%d/%m/%Y")
+    
+    citas_hoy_count = db.query(Turno).filter(
+        Turno.fecha >= str(fecha_hoy_str), 
+        # Citas que aún requieren confirmación (Pendiente)
+        Turno.estado.ilike("pendiente")
+    ).count()
+
+    # Clientes Activos: Contar todos los clientes 
+    clientes_activos_count = db.query(Cliente).count()
+
+    # Vehículos en Taller (EN CURSO):
+    # Contamos la cantidad de turnos cuyo estado es "En Curso". 
+    vehiculos_en_taller_count = db.query(Turno).filter(
+        Turno.estado == "En curso"
+    ).count() 
+
+    total_ingresos = (
+        db.query(func.sum(OrdenDeServicio.precio_total))
+        .join(Turno, OrdenDeServicio.turno_id == Turno.id)
+        .scalar()
+    )
+
+    ingresos_mensuales_total = total_ingresos or 0
+
+    return {
+        "citas_hoy": citas_hoy_count,
+        "clientes_activos": clientes_activos_count,
+        "vehiculos_en_taller": vehiculos_en_taller_count,
+        "ingresos_mensuales": ingresos_mensuales_total,
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+# --------------------------------------------------------------------------------
 
 def get_turno_y_orden_por_DNI_cliente(db: Session, dni: str):
     turno = (
@@ -108,7 +208,15 @@ def get_turno_y_orden_por_DNI_cliente(db: Session, dni: str):
         raise ValueError(f"No se encontró turno para ese DNI")
     
     return turno
-    
+
+
+
+
+
+
+
+
+# ----------------------------------------------------------------
 
 def update_turno(db: Session, turno_DNI: str, updated_data: dict):
     db_turno = get_turno_y_orden_por_DNI_cliente(db, turno_DNI)
@@ -120,8 +228,18 @@ def update_turno(db: Session, turno_DNI: str, updated_data: dict):
     db.refresh(db_turno)
     return db_turno
 
-def delete_turno(db: Session, turno_DNI: str):
-    db_turno = get_turno_y_orden_por_DNI_cliente(db, turno_DNI)
+
+
+
+
+
+
+
+
+
+# -----------------------------------------------------------------
+def delete_turno(db: Session, turno_id: int):
+    db_turno = db.query(Turno).filter(Turno.id == turno_id).first()
     if not db_turno:
         return None
     db.delete(db_turno)

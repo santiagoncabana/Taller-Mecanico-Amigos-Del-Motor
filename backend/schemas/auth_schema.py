@@ -24,7 +24,7 @@ class EmpleadoRegister(BaseModel):
     nombre: str
     email: str
     contrasena: str
-    rol: str  # Puedes establecer el rol fijo aquí, por ejemplo: "encargado"
+    rol: str  #Puedes establecer el rol fijo aquí, por ejemplo: "encargado"
     disponible: bool
 
 class ClienteUpdate(BaseModel):
